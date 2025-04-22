@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test/mocha.css"/>
+    <link rel="stylesheet" href="test/mine.css"/>
+</head>
+<body>
+<div id="mocha"></div>
+<script src="test/mocha.js"></script>
+<script>mocha.setup('bdd');</script>
+<script src="layatest.max.js"></script>
+<!--<script src="http://chaijs.com/chai.js"></script>-->
+<script src="test/chai.js"></script>
+<script src="test/sinon-chai.js"></script>
+<script src="test/sinon.js"></script>
+<script>
+    //tools
+    var GlobalBlankColorObj = {'r': 0x00, 'g': 0x00, 'b': 0x00, 'a': 0x00};
+    var DefaultTestColorObj = {'r': 0xFF, 'g': 0x00, 'b': 0x00, 'a': 0xFF};
+    var DefaultTestColorObj2 = {'r': 0x00, 'g': 0xFF, 'b': 0x00, 'a': 0xFF};
+    var GlobalBlankColorHexStr = '#000000';
+    var DefaultTestColorHexStr = '#FF0000';
+    var DefaultTestColorHexStr2 = '#00FF00';
+    var WaitRenderTime = 30;
+    var WaitTimerTime = 20;
+
+    function getCanvasPixelByRange(x, y, w, h) {
+        return document.getElementById("layaCanvas").getContext("2d").getImageData(x, y, w, h).data;
+    }
+
+    function compareRGBA(pixelData, i, color, isExcept) {
+        (isExcept === void 0) && (isExcept = false);
+        var r = pixelData[i], g = pixelData[i + 1], b = pixelData[i + 2], a = pixelData[i + 3];
+        var res = r === color.r && g === color.g && b === color.b && a === color.a;
+        return isExcept ? !res : res;
+    }
+
+    function compareSameColor(pixelData, start, len, color, isExcept) {
+        (isExcept === void 0) && (isExcept = false);
+        (start === void 0) && (start = 0);
+        (len === void 0) && (len = 0);
+        var end = (len === 0) ? pixelData.length : start + len * 4;
+        var pixelLen = pixelData.length;
+        (end > pixelLen) && (end = pixelLen);
+        for (var i = start; i < end; i += 4) {
+            if (!compareRGBA(pixelData, i, color, isExcept)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function comparePixelObjArr(w, h, pixelData, colors, isExcept) {
+        (isExcept === void 0) && (isExcept = false);
+        var color, tx, ty;
+        for (var i = 0; i < colors.length; i++) {
+            color = colors[i];
+            tx = (color.x === undefined) ? Math.floor((w - 1) * color.px) : color.x;
+            ty = (color.y === undefined) ? Math.floor((h - 1) * color.py) : color.y;
+            if (!compareRGBA(pixelData, (w * ty + tx) * 4, color.color, isExcept)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function getPixel(px, py, cx, cy, cw, ch) {
+        var pixelData = getCanvasPixelByRange(cx, cy, cw, ch);
+        var startIndex = (cw * py + px) * 4;
+        return [pixelData[startIndex], pixelData[startIndex + 1], pixelData[startIndex + 2], pixelData[startIndex + 3]];
+    }
+
+    //e: isEdgeColorExcept
+    function compareCanvasPixelRectEdge(x, y, w, h, edgeColors, isEdgeColorExcept) {
+        (isEdgeColorExcept === void 0) && (isEdgeColorExcept = false);
+        var pixelData = getCanvasPixelByRange(x - 1, y - 1, w + 2, h + 2);
+        var isMultiColor = false;
+        if (edgeColors instanceof Array) {
+            isMultiColor = true;
+        }
+        if (isMultiColor) {
+            if (!comparePixelObjArr(w, h, pixelData, edgeColors, isEdgeColorExcept)) {
+                return false;
+            }
+        } else {
+            if (!compareSameColor(pixelData, 0, w + 2, edgeColors, isEdgeColorExcept)) {
+                return false;
+            }
+            if (!compareSameColor(pixelData, (w + 2) * (h + 1) * 4, w + 2, edgeColors, isEdgeColorExcept)) {
+                return false;
+            }
+            for (var i = 1; i < h - 1; i++) {
+                if (!compareRGBA(pixelData, i * (w + 2) * 4, edgeColors, isEdgeColorExcept)) {
+                    return false;
+                }
+            }
+            for (i = 1; i < h - 1; i++) {
+                if (!compareRGBA(pixelData, (w + 1 + i * (w + 2)) * 4, edgeColors, isEdgeColorExcept)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * compare by colors.
+     * colors:[{'x':100,'y':100,'px':0.5,'py':0.5,color':{'r':0,'g':0,'b':0,'a':0}},...]. relative to the cut area. if is array, compare multicolor, if not, compare single color.
+     * isEdge: if true, validate the bounds.
+     */
+    function compareCanvasPixelRect(x, y, w, h, colors, isEdge, edgeColors, isEdgeColorExcept) {
+        if (colors === null || colors === undefined) return false;
+        (isEdge === void 0) && (isEdge = true);
+        (edgeColors === void 0) && (edgeColors = GlobalBlankColorObj);
+        (isEdgeColorExcept === void 0) && (isEdgeColorExcept = false);
+        if (isEdge) {
+            if (!compareCanvasPixelRectEdge(x, y, w, h, edgeColors, isEdgeColorExcept)) {
+                return false;
+            }
+        }
+
+        var pixelData = getCanvasPixelByRange(x, y, w, h);
+        var isMultiColor = colors instanceof Array;
+        if (isMultiColor) {
+            if (!comparePixelObjArr(w, h, pixelData, colors)) {
+                return false;
+            }
+        } else {
+            return compareSameColor(pixelData, 0, 0, colors);
+        }
+
+        return true;
+    }
+
+    // colors: [{'r':0,'g':0,'b':0,'a':0},{'r':0,'g':0,'b':0,'a':0},...]. start from seg index 0.
+    function getColorDataBySeg(colors, seg) {
+        if (colors === undefined || colors === null) {
+            return null;
+        }
+        (seg === void 0) && (seg = 1);
+        var colorData = [], i, isMultiColor = false;
+        if (colors instanceof Array) {
+            isMultiColor = true;
+        }
+        var len = isMultiColor ? colors.length : seg * 4;
+        var lineIndex, colorObj;
+        for (i = 0; i < len; i++) {
+            lineIndex = Math.ceil((i + 1) / seg) % 4;
+            switch (lineIndex) {
+                case 0:
+                    colorObj = {'px': 0, 'py': 1 - (i % seg) / seg};
+                    break;
+                case 1:
+                    colorObj = {'px': (i % seg) / seg, 'py': 0};
+                    break;
+                case 2:
+                    colorObj = {'px': 1, 'py': (i % seg) / seg};
+                    break;
+                case 3:
+                    colorObj = {'px': 1 - (i % seg) / seg, 'py': 1};
+                    break;
+            }
+            colorObj['color'] = isMultiColor ? colors[i] : colors;
+            colorData[i] = colorObj;
+        }
+        return colorData;
+    }
+
+    /**
+     * compare by colors and seg.
+     * colors: [{'r':0,'g':0,'b':0,'a':0},{'r':0,'g':0,'b':0,'a':0},...]. start from seg index 0.
+     */
+    function compareCanvasPixelRectVertex(x, y, w, h, seg, colors, isEdge, edgeColors, isEdgeColorExcept) {
+        if (colors === undefined || colors === null) {
+            return false;
+        }
+        (seg === void 0) && (seg = 1);
+        return compareCanvasPixelRect(x, y, w, h, getColorDataBySeg(colors, seg), isEdge, edgeColors, isEdgeColorExcept);
+    }
+</script>
+<script>
+    const FloatNear = 0.00001;
+
+    function laterCompareExpect(tm, cb, fn, args) {
+        function testColor() {
+            expect(fn.apply(null, args)).to.be.equal(true);
+            cb();
+        }
+
+        setTimeout(testColor, tm);
+    }
+
+    function compareRect(rect1, x, y, w, h) {
+        if (!rect1 || rect1.x !== x || rect1.y !== y || rect1.width !== w || rect1.height !== h) return false;
+        return true;
+    }
+
+    function compareNearRect(rect1, x, y, w, h) {
+        if (!rect1 || Math.abs(rect1.x - x) > FloatNear || Math.abs(rect1.y - y) > FloatNear || Math.abs(rect1.width - w) > FloatNear || Math.abs(rect1.height - h) > FloatNear) return false;
+        return true;
+    }
+
+    function compareSimpleArr(arr1, arr2) {
+        if (!arr1 || !arr2) return false;
+        const len = arr1.length;
+        for (var i = 0; i < len; i++) {
+            if (arr1[i] !== arr2[i]) return false;
+        }
+        return true;
+    }
+
+    function compareNearSimpleArr(arr1, arr2) {
+        if (!arr1 || !arr2) return false;
+        const len = arr1.length;
+        for (var i = 0; i < len; i++) {
+            if ((arr1[i] - arr2[i]) > FloatNear) return false;
+        }
+        return true;
+    }
+</script>
+<script>
+    window.chai = chai;
+    window.sinon = sinon;
+    window.expect = chai.expect;
+</script>
+<script>
+    //[x,y,w,h,seg,color]
+    //the two rect is crossing, and info2 on the top of info1, and info2's position is right-bottom relative of info1, and info2's origin point is inside of info1's graphic area.
+    //like this:
+    /**
+     * [info2]
+     * -----------
+     * |         |
+     * |     ----|----
+     * |     |   |   |
+     * -----------   |
+     *       |       |
+     *       ---------
+     *       [info1]
+     */
+    //type: 1 is like write before, 2 is exchanged each other's positon.
+    /**
+     * [info1]
+     * -----------
+     * |         |
+     * |     ----|----
+     * |     |   |   |
+     * -----------   |
+     *       |       |
+     *       ---------
+     *       [info2]
+     */
+    function compareSimpleCrossRect(info1, info2, type) {
+        (type === void 0) && (type = 1);
+        expect(compareCanvasPixelRectVertex.apply(null, info2)).to.be.equal(true);
+        var sepInfo1, sepInfo2;
+        if (1 === type) {
+            sepInfo1 = [info1[0], info1[1], info1[2], info2[1] - info1[1], info1[4], info1[5], false];
+            sepInfo2 = [info1[0], info2[1], info2[0] - info1[0], info1[3] + info1[1] - info2[1], info1[4], info1[5], false];
+        } else {
+            sepInfo1 = [info2[0] + info2[2], info1[1], info1[0] + info1[2] - (info2[0] + info2[2]), info2[1] + info2[3] - info1[1], info1[4], info1[5], false];
+            sepInfo2 = [info1[0], info2[1] + info2[3], info1[2], info1[1] + info1[3] - (info2[1] + info2[3]), info1[4], info1[5], false];
+        }
+        expect(compareCanvasPixelRectVertex.apply(null, sepInfo1)).to.be.equal(true);
+        expect(compareCanvasPixelRectVertex.apply(null, sepInfo2)).to.be.equal(true);
+        return true;
+    }
+
+    /**
+     * arr:[[x,y,r,g,b,a],...]
+     * offsetX,offsetY: offset of arr.
+     * return: [{'x':x1,y:'y1','r':0xFF,'g':0xFF,'b':0xFF,'a':OxFF},...]
+     */
+    function getColorObjArr(arr, offsetX, offsetY) {
+        if (!arr || !arr.length) return null;
+        (offsetX === void 0) && (offsetX = 0);
+        (offsetY === void 0) && (offsetY = 0);
+
+        var res = [];
+        var objArr;
+        for (var i = 0, len = arr.length; i < len; i++) {
+            objArr = arr[i];
+            res.push({
+                'x': objArr[0] + offsetX,
+                'y': objArr[1] + offsetY,
+                'color': {
+                    'r': (objArr[2] === undefined) ? 0xFF : objArr[2],
+                    'g': (objArr[3] === undefined) ? 0xFF : objArr[3],
+                    'b': (objArr[4] === undefined) ? 0xFF : objArr[4],
+                    'a': (objArr[5] === undefined) ? 0xFF : objArr[5]
+                }
+            });
+        }
+        return res;
+    }
+
+    /**
+     * x,y,right,bottom: edge pixels of PS captured samples.
+     * posArr: [[x,y],...]
+     * offsetX,offsetY: offset of the canvas origin point from PS image.
+     */
+    function getPixels(x, y, right, bottom, posArr, offsetX, offsetY) {
+        if (!posArr || !posArr.length) return null;
+        (offsetX === void 0) && (offsetX = 0);
+        (offsetY === void 0) && (offsetY = 0);
+
+        var rw = right - x + 1;
+        var rh = bottom - y + 1;
+        var res = [];
+        var colorObj, startIndex, tx, ty;
+        var sx = x + offsetX;
+        var sy = y + offsetY;
+        console.log(sx + ',' + sy + ',' + rw + ',' + rh);
+        var pixelArr = getCanvasPixelByRange(sx, sy, rw, rh);
+        for (var i = 0, len = posArr.length; i < len; i++) {
+            colorObj = posArr[i];
+            tx = colorObj[0] - x;
+            ty = colorObj[1] - y;
+            startIndex = (rw * ty + tx) * 4;
+            res.push([tx, ty, pixelArr[startIndex], pixelArr[startIndex + 1], pixelArr[startIndex + 2], pixelArr[startIndex + 3]]);
+        }
+
+        var colors = getColorObjArr(res);
+        console.log(compareCanvasPixelRect(sx, sy, rw, rh, colors));
+
+        return res;
+    }
+
+    function clearContext() {
+        // runs before each test in this block
+        Laya.stage.removeChildren();
+        Laya.stage.graphics.clear();
+        Laya.stage.bgColor = "#000000";
+    }
+</script>
+
+<script>
+//    console.log('--------------TEST START---------------');
+//    const sprite = Laya.stage.addChild(new Laya.Sprite()).pos(0, 0);
+//    sprite.graphics.save();
+//    sprite.graphics.scale(2,2);
+//    sprite.graphics.drawRect(0, 0, 10, 15, DefaultTestColorHexStr);
+
+//    function test1() {
+//        if(false){
+//            var arr = [1,2];
+//        }else {
+//            arr = [3];
+//        }
+//        console.log(arr.length);
+//    }
+//    test1();
+
+</script>
+
+<script src="test/test.dist.js"></script>
+<script>
+mocha.run();
+</script>
+
+</body>
+</html>

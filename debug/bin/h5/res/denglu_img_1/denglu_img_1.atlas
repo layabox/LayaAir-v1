@@ -1,0 +1,48 @@
+
+denglu_img_1.png
+size: 306,98
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+00000000
+  rotate: false
+  xy: 154, 44
+  size: 74, 52
+  orig: 1024, 768
+  offset: 307, 510
+  index: -1
+00000005
+  rotate: false
+  xy: 2, 30
+  size: 74, 66
+  orig: 1024, 768
+  offset: 307, 510
+  index: -1
+00000010
+  rotate: false
+  xy: 78, 30
+  size: 74, 66
+  orig: 1024, 768
+  offset: 307, 510
+  index: -1
+00000015
+  rotate: false
+  xy: 154, 2
+  size: 73, 40
+  orig: 1024, 768
+  offset: 308, 508
+  index: -1
+00000020
+  rotate: false
+  xy: 230, 2
+  size: 74, 41
+  orig: 1024, 768
+  offset: 307, 492
+  index: -1
+00000025
+  rotate: false
+  xy: 230, 45
+  size: 74, 51
+  orig: 1024, 768
+  offset: 307, 489
+  index: -1

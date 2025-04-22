@@ -1,0 +1,137 @@
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>天才削熊猫</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="tencent-x5-page-decoration" content="landscape"/>
+    <meta name="oupengmobile" content="game,fullscreen,lockrotation,landscape"/>
+    <meta name="x5-orientation" content="landscape"/>
+    <meta name="screen-orientation" content="landscape"/>
+    <meta name="imagemode" content="force"/>
+    <meta name="browsermode" content="application"/>
+	<meta name="full-screen" content="true"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+	<meta name='screen-orientation' content='landscape' />
+	<meta name='x5-fullscreen' content='true' />
+	<!-- <link href="icon/favicon.ico" type="image/x-icon" rel="shortcut icon"/> -->
+	<!-- <link rel="apple-touch-icon-precomposed" href="icon/57x57.png" /> -->
+	<!-- <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icon/114x114.png" /> -->
+	<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icon/144x144.png" /> -->
+
+	<meta http-equiv='expires' content='0' />
+	<script id="jsScript" type="text/javascript"></script>	
+	<script id="mylayamarket" type="text/javascript"></script>	
+	<style>
+		html, body {
+			position: relative;
+			height: 100%;
+		}
+		body {			
+			margin: 0;
+			padding: 0;
+		}
+		
+		@-webkit-keyframes rotatea{
+			0%{-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+			50% {-webkit-transform: rotate(180deg);}
+			100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+		}
+		.splash {
+			height:100%;
+			display:flex;
+			flex-direction:column;
+			align-items:center;
+			justify-content:center;
+		}
+		.splash1 {
+			display: none;
+			height:100%;
+			flex-direction:column;
+			align-items:center;
+			justify-content:center;
+		}
+		/*.splash1 img {
+			max-width: 60%;
+			max-height: 60%;
+			min-width: 60%;
+			min-height: 60%;
+		}*/
+		.company-logo {
+			position: absolute;
+			bottom: 76px;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			transform-origin: center bottom;
+		}
+		.splash1 p {
+			margin: 5px 0 0;
+			color: #FFF;
+			font-size: 26px;
+		}
+		
+		
+	</style>
+	<script src='https://res.wx.qq.com/open/js/jweixin-1.3.2.js'></script>
+</head>
+
+<div class="splash1"  id="codeImg">
+	<img src="images/code.jpg?201604071529" />
+	<p>长按二维码关注公众号</p>
+</div>
+<body id="bodyId" style="margin:0;overflow:none;overflow-x:hidden;overflow-y:hidden;background-color: #000000;">
+<script type="text/javascript">	
+		var mainjs = document.createElement("script");
+		mainjs.id="mainjs";
+		mainjs.onload = function(){
+			var clearId = setInterval(function(){
+					clearInterval(clearId);
+					var waitdiv=document.getElementById('waitdiv');
+					waitdiv.style.display = "none";
+					waitdiv.innerHTML="";
+			},1000);
+		}
+		<!-- var vid="?"+Date.now(); -->
+		mainjs.src = "Panda.max.js";// + vid;
+		document.body.appendChild(mainjs);
+</script>
+
+<div id="waitdiv" style="position:absolute;width:100%;height:100%;overflow: hidden;background-color: #000000;z-index: 20000001;">
+	<div id="logoBox" style="width:100%;height:100%;z-index:20000002;" class="splash">
+		<img  id='splash' src="images/cp_logo.png?201604071529" />
+		<img class="company-logo" id="company-logo" src="images/cp_logo1.png?201604071529"/>
+	</div>
+</div>
+<script type="text/javascript">	
+		var splash = document.getElementById('splash');
+		var codeImg1 = document.getElementById('codeImg');
+		var logo = document.getElementById('company-logo');
+    	function onresize(){
+    	    var w=window._width||window.innerWidth;    //screen.width;
+    		var h=window._height||window.innerHeight;  //screen.height;
+    		if (w>h){
+    			var sx=h/1080;
+    			var sy=w/1920;
+    			var s = Math.max(sx,sy);
+    			splash.style.transform=splash.style.webkitTransform="scale("+s+","+s+")";
+    			logo.style.transform=logo.style.webkitTransform="scale("+s+","+s+")";
+    			codeImg.style.transform=codeImg.style.webkitTransform="scale("+(s*2.3)+","+(s*2.3)+")";
+				logo.style.bottom = s * 250 + "px";
+    		}else{
+    			var sx=-1;
+    			var sy=h/1920;
+    			var s = Math.max(sx,sy);//alert('sx:'+sx+',sy:'+sy);
+    			splash.style.transform=splash.style.webkitTransform="scale("+s+","+s+")";
+    			logo.style.transform=logo.style.webkitTransform="scale("+s+","+s+")";
+    			codeImg.style.transform=codeImg.style.webkitTransform="scale("+(s*2.3)+","+(s*2.3)+")";
+				logo.style.bottom = s * 250 + "px";
+    		}
+    	}
+		onresize();
+    	window.addEventListener('resize', onresize,false);
+</script>
+</body>
+</html>

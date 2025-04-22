@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/connect-logger.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> connect-logger.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/90</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/81</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.7% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/81</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-plusplus */
+&nbsp;
+'use strict';
+&nbsp;
+const levels = require('./levels');
+&nbsp;
+const DEFAULT_FORMAT = ':remote-addr - -' +
+  ' ":method :url HTTP/:http-version"' +
+  ' :status :content-length ":referrer"' +
+  ' ":user-agent"';
+&nbsp;
+/**
+ * Log requests with the given `options` or a `format` string.
+ *
+ * Options:
+ *
+ *   - `format`        Format string, see below for tokens
+ *   - `level`         A log4js levels instance. Supports also 'auto'
+ *   - `nolog`         A string or RegExp to exclude target logs
+ *
+ * Tokens:
+ *
+ *   - `:req[header]` ex: `:req[Accept]`
+ *   - `:res[header]` ex: `:res[Content-Length]`
+ *   - `:http-version`
+ *   - `:response-time`
+ *   - `:remote-addr`
+ *   - `:date`
+ *   - `:method`
+ *   - `:url`
+ *   - `:referrer`
+ *   - `:user-agent`
+ *   - `:status`
+ *
+ * @return {Function}
+ * @param logger4js
+ * @param options
+ * @api public
+ */
+function <span class="fstat-no" title="function not covered" >getLogger(</span>logger4js, options) {
+  /* eslint no-underscore-dangle:0 */
+<span class="cstat-no" title="statement not covered" >  if (typeof options === 'object') {</span>
+<span class="cstat-no" title="statement not covered" >    options = options || {};</span>
+  } else <span class="cstat-no" title="statement not covered" >if (options) {</span>
+<span class="cstat-no" title="statement not covered" >    options = { format: options };</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    options = {};</span>
+  }
+&nbsp;
+  const thisLogger = <span class="cstat-no" title="statement not covered" >logger4js;</span>
+  let level = <span class="cstat-no" title="statement not covered" >levels.toLevel(options.level, levels.INFO);</span>
+  const fmt = <span class="cstat-no" title="statement not covered" >options.format || DEFAULT_FORMAT;</span>
+  const nolog = <span class="cstat-no" title="statement not covered" >options.nolog ? createNoLogCondition(options.nolog) : null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >(r</span>eq, res, next) =&gt; {</span>
+    // mount safety
+<span class="cstat-no" title="statement not covered" >    if (req._logging) <span class="cstat-no" title="statement not covered" >return next();</span></span>
+&nbsp;
+    // nologs
+<span class="cstat-no" title="statement not covered" >    if (nolog &amp;&amp; nolog.test(req.originalUrl)) <span class="cstat-no" title="statement not covered" >return next();</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (thisLogger.isLevelEnabled(level) || options.level === 'auto') {</span>
+      const start = <span class="cstat-no" title="statement not covered" >new Date();</span>
+      const writeHead = <span class="cstat-no" title="statement not covered" >res.writeHead;</span>
+&nbsp;
+      // flag as logging
+<span class="cstat-no" title="statement not covered" >      req._logging = true;</span>
+&nbsp;
+      // proxy for statusCode.
+<span class="cstat-no" title="statement not covered" >      res.writeHead = <span class="fstat-no" title="function not covered" >(c</span>ode, headers) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        res.writeHead = writeHead;</span>
+<span class="cstat-no" title="statement not covered" >        res.writeHead(code, headers);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        res.__statusCode = code;</span>
+<span class="cstat-no" title="statement not covered" >        res.__headers = headers || {};</span>
+&nbsp;
+        // status code response level handling
+<span class="cstat-no" title="statement not covered" >        if (options.level === 'auto') {</span>
+<span class="cstat-no" title="statement not covered" >          level = levels.INFO;</span>
+<span class="cstat-no" title="statement not covered" >          if (code &gt;= 300) <span class="cstat-no" title="statement not covered" >level = levels.WARN;</span></span>
+<span class="cstat-no" title="statement not covered" >          if (code &gt;= 400) <span class="cstat-no" title="statement not covered" >level = levels.ERROR;</span></span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          level = levels.toLevel(options.level, levels.INFO);</span>
+        }
+      };
+&nbsp;
+      // hook on end request to emit the log entry of the HTTP request.
+<span class="cstat-no" title="statement not covered" >      res.on('finish', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        res.responseTime = new Date() - start;</span>
+        // status code response level handling
+<span class="cstat-no" title="statement not covered" >        if (res.statusCode &amp;&amp; options.level === 'auto') {</span>
+<span class="cstat-no" title="statement not covered" >          level = levels.INFO;</span>
+<span class="cstat-no" title="statement not covered" >          if (res.statusCode &gt;= 300) <span class="cstat-no" title="statement not covered" >level = levels.WARN;</span></span>
+<span class="cstat-no" title="statement not covered" >          if (res.statusCode &gt;= 400) <span class="cstat-no" title="statement not covered" >level = levels.ERROR;</span></span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (thisLogger.isLevelEnabled(level)) {</span>
+          const combinedTokens = <span class="cstat-no" title="statement not covered" >assembleTokens(req, res, options.tokens || []);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (typeof fmt === 'function') {</span>
+            const line = <span class="cstat-no" title="statement not covered" >fmt(req, res, <span class="fstat-no" title="function not covered" >st</span>r =&gt; <span class="cstat-no" title="statement not covered" >format(str, combinedTokens))</span>;</span>
+<span class="cstat-no" title="statement not covered" >            if (line) <span class="cstat-no" title="statement not covered" >thisLogger.log(level, line);</span></span>
+          } else {
+<span class="cstat-no" title="statement not covered" >            thisLogger.log(level, format(fmt, combinedTokens));</span>
+          }
+        }
+      });
+    }
+&nbsp;
+    // ensure next gets always called
+<span class="cstat-no" title="statement not covered" >    return next();</span>
+  };
+}
+&nbsp;
+/**
+ * Adds custom {token, replacement} objects to defaults,
+ * overwriting the defaults if any tokens clash
+ *
+ * @param  {IncomingMessage} req
+ * @param  {ServerResponse} res
+ * @param  {Array} customTokens
+ *    [{ token: string-or-regexp, replacement: string-or-replace-function }]
+ * @return {Array}
+ */
+function <span class="fstat-no" title="function not covered" >assembleTokens(</span>req, res, customTokens) {
+  const arrayUniqueTokens = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(a</span>rray) =&gt; {</span>
+    const a = <span class="cstat-no" title="statement not covered" >array.concat();</span>
+<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt; a.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >      for (let j = i + 1; j &lt; a.length; ++j) {</span>
+        // not === because token can be regexp object
+        /* eslint eqeqeq:0 */
+<span class="cstat-no" title="statement not covered" >        if (a[i].token == a[j].token) {</span>
+<span class="cstat-no" title="statement not covered" >          a.splice(j--, 1);</span>
+        }
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return a;</span>
+  };
+&nbsp;
+  const defaultTokens = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':url', replacement: getUrl(req) });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':protocol', replacement: req.protocol });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':hostname', replacement: req.hostname });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':method', replacement: req.method });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':status', replacement: res.__statusCode || res.statusCode });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':response-time', replacement: res.responseTime });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':date', replacement: new Date().toUTCString() });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({</span>
+    token: ':referrer',
+    replacement: req.headers.referer || req.headers.referrer || ''
+  });
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({</span>
+    token: ':http-version',
+    replacement: `${req.httpVersionMajor}.${req.httpVersionMinor}`
+  });
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({</span>
+    token: ':remote-addr',
+    replacement: req.headers['x-forwarded-for'] ||
+    req.ip ||
+    req._remoteAddress ||
+    (req.socket &amp;&amp;
+      (req.socket.remoteAddress ||
+        (req.socket.socket &amp;&amp; req.socket.socket.remoteAddress)
+      )
+    )
+  });
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({ token: ':user-agent', replacement: req.headers['user-agent'] });</span>
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({</span>
+    token: ':content-length',
+    replacement: (res._headers &amp;&amp; res._headers['content-length']) ||
+    (res.__headers &amp;&amp; res.__headers['Content-Length']) ||
+    '-'
+  });
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({</span>
+    token: /:req\[([^\]]+)]/g,
+    replacement: <span class="fstat-no" title="function not covered" >fu</span>nction (_, field) {
+<span class="cstat-no" title="statement not covered" >      return req.headers[field.toLowerCase()];</span>
+    }
+  });
+<span class="cstat-no" title="statement not covered" >  defaultTokens.push({</span>
+    token: /:res\[([^\]]+)]/g,
+    replacement: <span class="fstat-no" title="function not covered" >fu</span>nction (_, field) {
+<span class="cstat-no" title="statement not covered" >      return res._headers ?</span>
+             (res._headers[field.toLowerCase()] || res.__headers[field])
+        : (res.__headers &amp;&amp; res.__headers[field]);
+    }
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return arrayUniqueTokens(customTokens.concat(defaultTokens));</span>
+}
+&nbsp;
+/**
+ * Return request url path,
+ * adding this function prevents the Cyclomatic Complexity,
+ * for the assemble_tokens function at low, to pass the tests.
+ *
+ * @param  {IncomingMessage} req
+ * @return {String}
+ * @api private
+ */
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getUrl(</span>req) {
+<span class="cstat-no" title="statement not covered" >  return req.originalUrl || req.url;</span>
+}
+&nbsp;
+/**
+ * Return formatted log line.
+ *
+ * @param  {String} str
+ * @param {Array} tokens
+ * @return {String}
+ * @api private
+ */
+function <span class="fstat-no" title="function not covered" >format(</span>str, tokens) {
+<span class="cstat-no" title="statement not covered" >  for (let i = 0; i &lt; tokens.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    str = str.replace(tokens[i].token, tokens[i].replacement);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return str;</span>
+}
+&nbsp;
+/**
+ * Return RegExp Object about nolog
+ *
+ * @param  {String|Array} nolog
+ * @return {RegExp}
+ * @api private
+ *
+ * syntax
+ *  1. String
+ *   1.1 "\\.gif"
+ *         NOT LOGGING http://example.com/hoge.gif and http://example.com/hoge.gif?fuga
+ *         LOGGING http://example.com/hoge.agif
+ *   1.2 in "\\.gif|\\.jpg$"
+ *         NOT LOGGING http://example.com/hoge.gif and
+ *           http://example.com/hoge.gif?fuga and http://example.com/hoge.jpg?fuga
+ *         LOGGING http://example.com/hoge.agif,
+ *           http://example.com/hoge.ajpg and http://example.com/hoge.jpg?hoge
+ *   1.3 in "\\.(gif|jpe?g|png)$"
+ *         NOT LOGGING http://example.com/hoge.gif and http://example.com/hoge.jpeg
+ *         LOGGING http://example.com/hoge.gif?uid=2 and http://example.com/hoge.jpg?pid=3
+ *  2. RegExp
+ *   2.1 in /\.(gif|jpe?g|png)$/
+ *         SAME AS 1.3
+ *  3. Array
+ *   3.1 ["\\.jpg$", "\\.png", "\\.gif"]
+ *         SAME AS "\\.jpg|\\.png|\\.gif"
+ */
+function <span class="fstat-no" title="function not covered" >createNoLogCondition(</span>nolog) {
+  let regexp = <span class="cstat-no" title="statement not covered" >null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (nolog) {</span>
+<span class="cstat-no" title="statement not covered" >    if (nolog instanceof RegExp) {</span>
+<span class="cstat-no" title="statement not covered" >      regexp = nolog;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof nolog === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >      regexp = new RegExp(nolog);</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (Array.isArray(nolog)) {</span>
+      // convert to strings
+      const regexpsAsStrings = <span class="cstat-no" title="statement not covered" >nolog.map(<span class="fstat-no" title="function not covered" >re</span>g =&gt; (<span class="cstat-no" title="statement not covered" >reg.source ? reg.source : reg)</span>);</span>
+<span class="cstat-no" title="statement not covered" >      regexp = new RegExp(regexpsAsStrings.join('|'));</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return regexp;</span>
+}
+&nbsp;
+module.exports.connectLogger = getLogger;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 27 2016 08:29:28 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

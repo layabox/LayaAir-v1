@@ -1,0 +1,76 @@
+#ifdef HIGHPRECISION
+  precision highp float;
+#else
+  precision mediump float;
+#endif
+
+varying float v_Discard;
+varying vec4 v_Color;
+varying vec2 v_Texcoord0;
+varying vec2 v_Texcoord1;
+
+uniform vec4 u_BaseColor;
+uniform vec4 u_AlphaColor;
+uniform float u_Instensity;
+uniform float u_Alpha;
+
+#ifdef MAINTEXTURE
+	uniform sampler2D u_MainTexture;
+#endif
+
+#ifdef MASKTEXTURE
+	uniform sampler2D u_MaskTexture;
+#endif
+
+#ifdef RENDERMODE_MESH
+	varying vec4 v_MeshColor;
+#endif
+
+#ifdef FOG
+	varying vec3 v_PositionWorld;
+	uniform vec3 u_CameraPosition;
+	uniform float u_FogStart;
+	uniform float u_FogRange;
+	#ifdef ADDTIVEFOG
+	#else
+		uniform vec3 u_FogColor;
+	#endif
+#endif
+
+
+void main()
+{	
+	#ifdef RENDERMODE_MESH
+		gl_FragColor=v_MeshColor;
+	#else
+		gl_FragColor=vec4(1.0);	
+	#endif
+		
+	vec4 mainTextureColor = vec4(1.0);
+	#ifdef MAINTEXTURE
+		mainTextureColor = texture2D(u_MainTexture, v_Texcoord0);
+	#endif
+	
+	vec4 maskTextureColor = vec4(1.0);
+	#ifdef MASKTEXTURE
+		maskTextureColor = texture2D(u_MaskTexture, v_Texcoord1);
+	#endif
+	
+	vec4 outColor = mix(vec4(0.0), mainTextureColor, maskTextureColor);
+	
+	gl_FragColor *= 2.0 * outColor * u_BaseColor * u_AlphaColor * v_Color * u_Instensity;
+	gl_FragColor.a *= u_Alpha;
+	
+	#ifdef FOG
+		vec3 toEye=u_CameraPosition-v_PositionWorld;
+		float toEyeLength=length(toEye);
+		toEye/=toEyeLength;
+		
+		float lerpFact=clamp((toEyeLength-u_FogStart)/u_FogRange,0.0,1.0);
+		#ifdef ADDTIVEFOG
+			gl_FragColor.rgb=mix(gl_FragColor.rgb,vec3(0.0,0.0,0.0),lerpFact);
+		#else
+			gl_FragColor.rgb=mix(gl_FragColor.rgb,u_FogColor,lerpFact);
+		#endif
+	#endif
+}

@@ -1,0 +1,50 @@
+{
+    "frames": {
+        "arrow_left.png": {
+            "frame": {
+                "h": 128,
+                "idx": 0,
+                "w": 128,
+                "x": 0,
+                "y": 127
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 128,
+                "w": 128
+            },
+            "spriteSourceSize": {
+                "h": 128,
+                "w": 128,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "btn_start.png": {
+            "frame": {
+                "h": 126,
+                "idx": 0,
+                "w": 284,
+                "x": 0,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 126,
+                "w": 284
+            },
+            "spriteSourceSize": {
+                "h": 126,
+                "w": 284,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        }
+    },
+    "meta": {
+        "image": "scene.png",
+        "prefix": "scene/"
+    }
+}

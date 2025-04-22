@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>layatest</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] ani-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/ani/src</location>
+		</link>
+		<link>
+			<name>[source path] core-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/core/src</location>
+		</link>
+		<link>
+			<name>[source path] filter-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/filter/src</location>
+		</link>
+		<link>
+			<name>[source path] html-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/html/src</location>
+		</link>
+		<link>
+			<name>[source path] jsc</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/core/jsc</location>
+		</link>
+		<link>
+			<name>[source path] particle-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/particle/src</location>
+		</link>
+		<link>
+			<name>[source path] ui-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/ui/src</location>
+		</link>
+		<link>
+			<name>[source path] webGL-src</name>
+			<type>2</type>
+			<location>E:/Mine/Project/git/laya/dawawa/layaair/webGL/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>

@@ -1,0 +1,24 @@
+package test 
+{
+	import laya.ui.View;
+	/**
+	 * ...
+	 * @author ww
+	 */
+	public class TaskUI extends View
+	{
+		
+		public function TaskUI() 
+		{
+			
+		}
+		public static var uiView={"type":"View","props":{"y":354,"x":540,"width":1185,"pivotY":354,"pivotX":540,"height":692},"child":[{"type":"Box","props":{"y":1,"x":0,"cacheAs":"bitmap"},"child":[{"type":"Button","props":{"y":0,"x":1117,"var":"closeBtn","stateNum":1,"skin":"common/btn_close.png"}},{"type":"Image","props":{"y":17,"x":17,"width":1048,"skin":"common/bg.png","sizeGrid":"32,31,27,28","height":675}},{"type":"Image","props":{"y":45,"x":0,"width":1080,"skin":"common/tbg.png","sizeGrid":"18,20,25,20","height":93}}]},{"type":"Panel","props":{"y":143,"x":45,"width":986,"var":"panel","height":530},"child":[{"type":"Box","props":{"y":0,"x":0},"child":[{"type":"Box","props":{"y":0,"x":0,"cacheAs":"bitmap"},"child":[{"type":"Image","props":{"y":632,"x":0,"width":986,"skin":"common/bg3.png","sizeGrid":"64,30,38,30"}},{"type":"Image","props":{"width":986,"skin":"task/bg1.png","sizeGrid":"63,35,37,33"}},{"type":"Image","props":{"y":81,"x":45,"skin":"task/icon1.png"}},{"type":"Image","props":{"y":202,"x":0,"width":986,"skin":"task/bg2.png","sizeGrid":"100,30,40,30"}},{"type":"Image","props":{"y":283,"x":45,"skin":"task/icon2.png"}},{"type":"Image","props":{"y":395,"x":36,"skin":"task/icon3.png"}},{"type":"Image","props":{"y":507,"x":45,"skin":"task/icon4.png"}},{"type":"Image","props":{"y":496,"x":108,"skin":"task/jiaobiao1.png"}},{"type":"Image","props":{"y":711,"x":45,"skin":"task/icon5.png"}},{"type":"Image","props":{"y":700,"x":108,"width":48,"skin":"task/jiaobiao2.png","height":32}},{"type":"Image","props":{"y":371,"x":162,"width":792,"skin":"task/fengexian.png"}},{"type":"Image","props":{"y":486,"x":162,"width":792,"skin":"task/fengexian.png"}},{"type":"Label","props":{"y":710,"x":165,"text":"","strokeColor":"#f37e0b","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":649,"x":48,"text":"","strokeColor":"#f37e0b","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":18,"x":48,"text":"","strokeColor":"#4c841e","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":74,"x":165,"text":"","strokeColor":"#4c841e","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":221,"x":48,"text":"","strokeColor":"#862f8e","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":276,"x":165,"text":"","strokeColor":"#862f8e","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":390,"x":165,"text":"","strokeColor":"#862f8e","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":502,"x":165,"text":"","strokeColor":"#862f8e","stroke":5,"fontSize":28,"color":"#ffffff","bold":true}},{"type":"Label","props":{"y":118,"x":165,"text":"","fontSize":24,"color":"#383468"}},{"type":"Label","props":{"y":323,"x":165,"text":"","fontSize":24,"color":"#383468"}},{"type":"Label","props":{"y":435,"x":165,"text":"","fontSize":24,"color":"#383468"}},{"type":"Label","props":{"y":549,"x":165,"text":"。","fontSize":24,"color":"#383468"}},{"type":"Label","props":{"y":756,"x":165,"text":"","fontSize":24,"color":"#383468"}},{"type":"Label","props":{"y":847,"x":31,"wordWrap":true,"width":943,"text":"","leading":25,"height":141,"fontSize":24,"color":"#383468"}},{"type":"Label","props":{"y":715,"x":370,"text":"","fontSize":24,"color":"#383468"}}]},{"type":"Image","props":{"y":76,"x":851,"visible":false,"var":"btn1","skin":"task/gou.png"}},{"type":"Button","props":{"y":274,"x":800,"var":"btn2","stateNum":1,"skin":"task/btn_taskd.png"}},{"type":"Button","props":{"y":389,"x":801,"var":"btn3","stateNum":1,"skin":"task/btn_taskd.png"}},{"type":"Button","props":{"y":502,"x":798,"var":"btn4","stateNum":1,"skin":"task/btn_taskd.png"}},{"type":"Button","props":{"y":700,"x":800,"var":"btn5","stateNum":1,"skin":"task/btn_taskd.png"}},{"type":"Label","props":{"y":137,"x":812,"width":135,"var":"lb1","height":20,"fontSize":20,"color":"#383468","align":"center"}},{"type":"Label","props":{"y":343,"x":811,"width":135,"var":"lb2","height":20,"fontSize":20,"color":"#383468","align":"center"}},{"type":"Label","props":{"y":458,"x":811,"width":135,"var":"lb3","height":20,"fontSize":20,"color":"#383468","align":"center"}},{"type":"Label","props":{"y":572,"x":811,"width":135,"var":"lb4","height":20,"fontSize":20,"color":"#383468","align":"center"}},{"type":"Label","props":{"y":768,"x":811,"width":135,"var":"lb5","height":20,"fontSize":20,"color":"#383468","align":"center"}}]}]},{"type":"Label","props":{"y":55,"x":407,"var":"titleLb","text":"任务列表  (0/13)","strokeColor":"#0c53b4","stroke":5,"fontSize":36,"color":"#ffffff"}}]};
+		
+		override protected function createChildren():void 
+		{
+			super.createChildren();
+			this.createView(TaskUI.uiView);
+		}
+	}
+
+}

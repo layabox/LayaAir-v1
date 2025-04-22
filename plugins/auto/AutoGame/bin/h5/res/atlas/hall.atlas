@@ -1,0 +1,176 @@
+{
+    "frames": {
+        "btn_acheve.png": {
+            "frame": {
+                "h": 99,
+                "idx": 0,
+                "w": 121,
+                "x": 0,
+                "y": 135
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 99,
+                "w": 121
+            },
+            "spriteSourceSize": {
+                "h": 99,
+                "w": 121,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "btn_free.png": {
+            "frame": {
+                "h": 134,
+                "idx": 0,
+                "w": 208,
+                "x": 0,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 134,
+                "w": 208
+            },
+            "spriteSourceSize": {
+                "h": 134,
+                "w": 208,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "btn_friend.png": {
+            "frame": {
+                "h": 99,
+                "idx": 0,
+                "w": 121,
+                "x": 122,
+                "y": 135
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 99,
+                "w": 121
+            },
+            "spriteSourceSize": {
+                "h": 99,
+                "w": 121,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "btn_skill.png": {
+            "frame": {
+                "h": 99,
+                "idx": 0,
+                "w": 121,
+                "x": 209,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 99,
+                "w": 121
+            },
+            "spriteSourceSize": {
+                "h": 99,
+                "w": 121,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "btn_store.png": {
+            "frame": {
+                "h": 99,
+                "idx": 0,
+                "w": 121,
+                "x": 244,
+                "y": 100
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 99,
+                "w": 121
+            },
+            "spriteSourceSize": {
+                "h": 99,
+                "w": 121,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "btn_task.png": {
+            "frame": {
+                "h": 99,
+                "idx": 0,
+                "w": 121,
+                "x": 331,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 99,
+                "w": 121
+            },
+            "spriteSourceSize": {
+                "h": 99,
+                "w": 121,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "free_font.png": {
+            "frame": {
+                "h": 51,
+                "idx": 0,
+                "w": 192,
+                "x": 244,
+                "y": 200
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 51,
+                "w": 192
+            },
+            "spriteSourceSize": {
+                "h": 51,
+                "w": 192,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "rank.png": {
+            "frame": {
+                "h": 26,
+                "idx": 0,
+                "w": 68,
+                "x": 366,
+                "y": 100
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 26,
+                "w": 68
+            },
+            "spriteSourceSize": {
+                "h": 26,
+                "w": 68,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        }
+    },
+    "meta": {
+        "image": "hall.png",
+        "prefix": "hall/"
+    }
+}

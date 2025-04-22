@@ -1,0 +1,58 @@
+D .
+D comp
+P D12221A9 bg.png
+P 9401CC40 blank.png
+P B03390E5 btn_close.png
+P 1F3929EA button.png
+P 6CC6DF97 checkbox.png
+P FB94CCF2 clip_num.png
+P F7B6B7D7 clip_selectBox.png
+P 755271AE clip_tree_arrow.png
+P 859FD34C clip_tree_folder.png
+P A0E3B8F9 combobox.png
+P 9EDA959E hscroll$bar.png
+P 1AB768D4 hscroll$down.png
+P 685261D3 hscroll$up.png
+P 274B8076 hscroll.png
+P E466EB1C hslider$bar.png
+P C4BECA54 hslider.png
+P 5EDC128C html.png
+P ACFFCCCF image.png
+P 5EDC128C label.png
+P 5EDC128C linkbutton.png
+P 9E4DD730 progress$bar.png
+P 3FD78E12 progress.png
+P BF898D6A radio.png
+P BF898D6A radiogroup.png
+P 8CFD9D35 tab.png
+P BDA71F88 textarea.png
+P BDA71F88 textinput.png
+P 52107B89 vscroll$bar.png
+P E26B933E vscroll$down.png
+P B9680947 vscroll$up.png
+P 7E990267 vscroll.png
+P E466EB1C vslider$bar.png
+P 2BFF7046 vslider.png
+D hall
+R D94D72AF bg.jpg
+P 791AF7A7 btn_acheve.png
+P 1D089A95 btn_free.png
+P 08363AC2 btn_friend.png
+P F66EB41C btn_skill.png
+P 90038DD2 btn_store.png
+P 17263D49 btn_task.png
+P 473C0413 free_font.png
+P E5F7DAC7 rank.png
+D scene
+P BC812DE3 arrow_left.png
+R D94D72AF bg.jpg
+P 2B2947DF btn_start.png
+R 9E92C266 scene1.jpg
+R 33CA50D3 scene2.jpg
+D shop
+P 9C750054 btn_buy.png
+P 9E14A6E1 cj_nbg.png
+P 6DA0993F item_days.png
+P 440A54AE kq.png
+P 9527F6D0 name_bg.png
+P CEBED411 zb_wz.png

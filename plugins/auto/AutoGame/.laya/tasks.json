@@ -1,0 +1,9 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "${workspaceRoot}/.laya/astool/layajs",
+    "isShellCommand": false,
+    "args": ["${workspaceRoot}/AutoGame.as3proj;iflash=false;windowshow=false;chromerun=false;quickcompile=true"],
+    "showOutput": "always"
+}

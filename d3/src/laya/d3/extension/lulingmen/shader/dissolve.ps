@@ -1,0 +1,53 @@
+#ifdef FSHIGHPRECISION
+	precision highp float;
+#else
+	precision mediump float;
+#endif
+
+varying vec2 v_Texcoord0;
+varying vec2 v_Texcoord1;
+varying vec2 v_Texcoord2;
+
+#ifdef MAINTEXTURE
+	uniform sampler2D u_MainTexture;
+#endif
+
+#ifdef DISSOLVETEXTURE
+	uniform sampler2D u_DissolveTexture;
+#endif
+
+#ifdef MASKTEXTURE
+	uniform sampler2D u_MaskTexture;
+#endif
+
+uniform vec4 u_BaseColor;
+uniform float u_Dissolve;
+uniform float u_DissolveSpeed;
+
+void main()
+{
+	vec4 mainColor = u_BaseColor;
+	mainColor.a = 1.0;
+	#ifdef MAINTEXTURE
+		mainColor *= texture2D(u_MainTexture, v_Texcoord0);
+	#endif
+	
+	vec4 dissolveColor = vec4(1.0);
+	#ifdef DISSOLVETEXTURE
+		dissolveColor = texture2D(u_DissolveTexture, v_Texcoord1);
+	#endif
+	
+	vec4 maskColor = vec4(1.0);
+	#ifdef MASKTEXTURE
+		maskColor = texture2D(u_MaskTexture, v_Texcoord2);
+	#endif
+	
+	vec4 outColor = mix(vec4(0.0), mainColor, maskColor);
+	if(dissolveColor.a <= u_Dissolve){
+		float alpha = clamp(outColor.a - u_Dissolve * 2.0 + dissolveColor.a, 0.0, 1.0);
+		alpha = pow(alpha, u_DissolveSpeed);
+		outColor.a = alpha;
+	}
+	
+	gl_FragColor = outColor;
+}

@@ -1,0 +1,38 @@
+package data;
+syntax = "proto3";
+
+message NetMessage{
+	fixed32 length=1;
+	fixed32 commandId=2;
+	fixed32 extend=3;
+	fixed32 dataSize=4;
+	bytes data=5;
+}
+
+message DataChangeMsg{
+  uint32 type = 1;
+  string sheetName = 2;
+}
+
+
+message AchievementCountData {
+  uint32 gold = 1;
+  uint32 price = 2;
+}
+message AchievementData {
+  uint32 id = 1;
+  string type = 2;
+  uint32 num = 3;
+  string desc = 4;
+  bool success = 5;
+}
+message UserData {
+  string username = 1;
+  bool isVip = 2;
+  uint32 gold = 3;
+}
+message BagData {
+  uint32 id = 1;
+  uint32 num = 2;
+  uint32 type = 3;
+}

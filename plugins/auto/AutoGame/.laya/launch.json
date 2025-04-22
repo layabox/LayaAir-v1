@@ -1,0 +1,37 @@
+{
+	"version": "0.2.0",
+	"configurations": [ 
+		{
+			"name": "layaAir",
+			"type": "chrome",
+			"request": "launch",
+			"file": "${workspaceRoot}/bin/h5/index.html",
+			"runtimeExecutable": "${execPath}",
+			"useBuildInServer": true,
+			"sourceMaps": true,
+			"webRoot": "${workspaceRoot}",
+			"port": 9222,
+			"fixedPort":false
+		},
+		{
+			"name": "chrome调试",
+			"type": "chrome",
+			"request": "launch",
+			"file": "${workspaceRoot}/bin/h5/index.html",
+			// "换成自己的谷歌安装路径，": 比如
+			//window 默认安装路径为: "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+			//mac 系统上的默认安装路径为 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+			// "runtimeExecutable": "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+			"runtimeArgs": [
+				"--allow-file-access-from-files",
+				"--allow-file-access-frome-files",
+				" --disable-web-security"
+			],
+			"sourceMaps": true,
+			"webRoot": "${workspaceRoot}",
+			//假如谷歌调试报userDataDir不可用，请把谷歌安装路径取得管理员权限,或者更换${tmpdir}为其他可以读写的文件夹，也可以删除。
+			"userDataDir": "${tmpdir}",
+			"fixedPort":false
+		}
+	]
+}

@@ -1,0 +1,47 @@
+<res>
+   <html type="Button" props="" compress="0" quality="80" pack="0" picType="0">
+      <body>
+         <parsererror style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
+            <h3>This page contains the following errors:                                                            </h3>
+            <div style="font-family:monospace;font-size:12px">error on line 1 at column 46: attributes construct error
+                                                            </div>
+            <h3>Below is a rendering of the page up to the first error.                                                            </h3>
+         </parsererror>
+      </body>
+   </html>
+   <html type="Image" props="" compress="0" quality="80" pack="0" picType="0">
+      <body>
+         <parsererror style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
+            <h3>This page contains the following errors:                                                            </h3>
+            <div style="font-family:monospace;font-size:12px">error on line 1 at column 46: attributes construct error
+                                                            </div>
+            <h3>Below is a rendering of the page up to the first error.                                                            </h3>
+         </parsererror>
+      </body>
+   </html>
+   <html type="Button" props="y=297@@!@@x=498@@!@@stateNum=1">
+      <body>
+         <parsererror style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
+            <h3>This page contains the following errors:                                                </h3>
+            <div style="font-family:monospace;font-size:12px">error on line 1 at column 46: attributes construct error
+                                                </div>
+            <h3>Below is a rendering of the page up to the first error.                                                </h3>
+         </parsererror>
+      </body>
+   </html>
+   <html type="Image" props="sizeGrid=29,8,8,8" compress="0" quality="80" pack="0" picType="0">
+      <body>
+         <parsererror style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black">
+            <h3>This page contains the following errors:                                    </h3>
+            <div style="font-family:monospace;font-size:12px">error on line 1 at column 38: attributes construct error
+                                    </div>
+            <h3>Below is a rendering of the page up to the first error.                                    </h3>
+         </parsererror>
+      </body>
+   </html>
+   <item name="comp/btn_close.png" type="Button" compress="0" pack="0" quality="80" props="" picType="0"/>
+   <item name="comp/bg.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=30,8,8,8" picType="0"/>
+   <item name="shop/cj_nbg.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=105,28,43,36" picType="0"/>
+   <item name="shop/name_bg.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=3,11,3,9" picType="0"/>
+   <item name="shop/btn_buy.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=0,36,0,35" picType="0"/>
+</res>

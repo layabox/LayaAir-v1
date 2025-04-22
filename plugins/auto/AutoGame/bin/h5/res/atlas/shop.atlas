@@ -1,0 +1,134 @@
+{
+    "frames": {
+        "btn_buy.png": {
+            "frame": {
+                "h": 50,
+                "idx": 0,
+                "w": 93,
+                "x": 0,
+                "y": 174
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 50,
+                "w": 93
+            },
+            "spriteSourceSize": {
+                "h": 50,
+                "w": 93,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "cj_nbg.png": {
+            "frame": {
+                "h": 264,
+                "idx": 0,
+                "w": 104,
+                "x": 162,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 264,
+                "w": 104
+            },
+            "spriteSourceSize": {
+                "h": 264,
+                "w": 104,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "item_days.png": {
+            "frame": {
+                "h": 37,
+                "idx": 0,
+                "w": 63,
+                "x": 94,
+                "y": 174
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 37,
+                "w": 63
+            },
+            "spriteSourceSize": {
+                "h": 37,
+                "w": 63,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "kq.png": {
+            "frame": {
+                "h": 173,
+                "idx": 0,
+                "w": 161,
+                "x": 0,
+                "y": 0
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 173,
+                "w": 161
+            },
+            "spriteSourceSize": {
+                "h": 173,
+                "w": 161,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "name_bg.png": {
+            "frame": {
+                "h": 26,
+                "idx": 0,
+                "w": 29,
+                "x": 0,
+                "y": 225
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 26,
+                "w": 29
+            },
+            "spriteSourceSize": {
+                "h": 26,
+                "w": 29,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        },
+        "zb_wz.png": {
+            "frame": {
+                "h": 30,
+                "idx": 0,
+                "w": 62,
+                "x": 94,
+                "y": 212
+            },
+            "rotated": false,
+            "sourceSize": {
+                "h": 30,
+                "w": 62
+            },
+            "spriteSourceSize": {
+                "h": 30,
+                "w": 62,
+                "x": 0,
+                "y": 0
+            },
+            "trimmed": false
+        }
+    },
+    "meta": {
+        "image": "shop.png",
+        "prefix": "shop/"
+    }
+}

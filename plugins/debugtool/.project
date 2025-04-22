@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>DebugTool</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] core-src</name>
+			<type>2</type>
+			<location>E:/Repository/libs/core/src</location>
+		</link>
+		<link>
+			<name>[source path] ui-src</name>
+			<type>2</type>
+			<location>E:/Repository/libs/ui/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>

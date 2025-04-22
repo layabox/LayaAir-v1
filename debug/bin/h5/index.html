@@ -1,0 +1,46 @@
+<html>
+<head>
+	<meta charset='utf-8'/>
+	<title>www.layabox.com</title>
+    <meta name='renderer' content='webkit'>
+	<meta name='viewport' content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'/>
+	<meta name='apple-mobile-web-app-capable' content='yes' />
+	<meta name='full-screen' content='true' />
+	<meta name='x5-fullscreen' content='true' />
+	<meta name='360-fullscreen' content='true' />
+	<meta http-equiv='expires' content='0' />
+	<meta name='laya' screenorientation='landscape' />
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta http-equiv='expires' content='0' />
+	<meta http-equiv='Cache-Control' content='no-siteapp' />
+</head>
+<div class="splash1"  id="codeImg" style="position:absolute;z-index:999;display:none;">
+	<img src="res/code.jpg?201604071529" />
+	<p>长按二维码关注公众号</p>
+</div>
+<body style='margin:0;overflow:none;overflow-x:hidden;overflow-y:hidden;background-color: #000;'>
+	<script type="text/javascript">	
+		var codeImg1 = document.getElementById('codeImg');
+    	function onresize(){
+    	    var w=window._width||window.innerWidth;    //screen.width;
+    		var h=window._height||window.innerHeight;  //screen.height;
+    		if (w>h){
+    			var sx=h/1080;
+    			var sy=w/1920;
+    			var s = Math.max(sx,sy);
+    			//splash.style.transform=splash.style.webkitTransform="scale("+s+","+s+")";
+    			codeImg.style.transform=codeImg.style.webkitTransform="scale("+(s*2.3)+","+(s*2.3)+")";
+    		}else{
+    			var sx=-1;
+    			var sy=h/1920;
+    			var s = Math.max(sx,sy);//alert('sx:'+sx+',sy:'+sy);
+    			//splash.style.transform=splash.style.webkitTransform="scale("+s+","+s+")";
+    			codeImg.style.transform=codeImg.style.webkitTransform="scale("+(s*2.3)+","+(s*2.3)+")";
+    		}
+    	}
+		onresize();
+    	window.addEventListener('resize', onresize,false);
+</script>
+<script src='debug-dev.max.js' loader='laya'></script>
+</body>
+</html>

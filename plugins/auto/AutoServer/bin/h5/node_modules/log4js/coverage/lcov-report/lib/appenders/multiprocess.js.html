@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/appenders/multiprocess.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/appenders</a> multiprocess.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">39.39% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>26/66</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.81% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">41.18% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">39.39% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>26/66</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+const log4js = require('../log4js');
+const net = require('net');
+&nbsp;
+const END_MSG = '__LOG4JS__';
+const servers = [];
+&nbsp;
+/**
+ * Creates a server, listening on config.loggerPort, config.loggerHost.
+ * Output goes to config.actualAppender (config.appender is used to
+ * set up that appender).
+ */
+function logServer(config) {
+  /**
+   * Takes a utf-8 string, returns an object with
+   * the correct log properties.
+   */
+  function <span class="fstat-no" title="function not covered" >deserializeLoggingEvent(</span>clientSocket, msg) {
+    let loggingEvent;
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      loggingEvent = JSON.parse(msg);</span>
+<span class="cstat-no" title="statement not covered" >      loggingEvent.startTime = new Date(loggingEvent.startTime);</span>
+<span class="cstat-no" title="statement not covered" >      loggingEvent.level = log4js.levels.toLevel(loggingEvent.level.levelStr);</span>
+    } catch (e) {
+      // JSON.parse failed, just log the contents probably a naughty.
+<span class="cstat-no" title="statement not covered" >      loggingEvent = {</span>
+        startTime: new Date(),
+        categoryName: 'log4js',
+        level: log4js.levels.ERROR,
+        data: ['Unable to parse log:', msg]
+      };
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    loggingEvent.remoteAddress = clientSocket.remoteAddress;</span>
+<span class="cstat-no" title="statement not covered" >    loggingEvent.remotePort = clientSocket.remotePort;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return loggingEvent;</span>
+  }
+&nbsp;
+  const actualAppender = config.actualAppender;
+&nbsp;
+  /* eslint prefer-arrow-callback:0 */
+  const server = net.createServer(function <span class="fstat-no" title="function not covered" >serverCreated(</span>clientSocket) {
+<span class="cstat-no" title="statement not covered" >    clientSocket.setEncoding('utf8');</span>
+    let logMessage = <span class="cstat-no" title="statement not covered" >'';</span>
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >logTheMessage(</span>msg) {
+<span class="cstat-no" title="statement not covered" >      if (logMessage.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        actualAppender(deserializeLoggingEvent(clientSocket, msg));</span>
+      }
+    }
+&nbsp;
+    function <span class="fstat-no" title="function not covered" >chunkReceived(</span>chunk) {
+      let event;
+<span class="cstat-no" title="statement not covered" >      logMessage += chunk || '';</span>
+<span class="cstat-no" title="statement not covered" >      if (logMessage.indexOf(END_MSG) &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >        event = logMessage.substring(0, logMessage.indexOf(END_MSG));</span>
+<span class="cstat-no" title="statement not covered" >        logTheMessage(event);</span>
+<span class="cstat-no" title="statement not covered" >        logMessage = logMessage.substring(event.length + END_MSG.length) || '';</span>
+        // check for more, maybe it was a big chunk
+<span class="cstat-no" title="statement not covered" >        chunkReceived();</span>
+      }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    clientSocket.on('data', chunkReceived);</span>
+<span class="cstat-no" title="statement not covered" >    clientSocket.on('end', chunkReceived);</span>
+  });
+&nbsp;
+  server.listen(config.loggerPort || <span class="branch-1 cbranch-no" title="branch not covered" >5000,</span> config.loggerHost || 'localhost', function () {
+    servers.push(server);
+    // allow the process to exit, if this is the only socket active
+    server.unref();
+  });
+&nbsp;
+  return actualAppender;
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >workerAppender(</span>config) {
+  let canWrite = <span class="cstat-no" title="statement not covered" >false;</span>
+  const buffer = <span class="cstat-no" title="statement not covered" >[];</span>
+  let socket;
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >write(</span>loggingEvent) {
+    // JSON.stringify(new Error('test')) returns {}, which is not really useful for us.
+    // The following allows us to serialize errors correctly.
+    // Validate that we really are in this case
+<span class="cstat-no" title="statement not covered" >    if (loggingEvent &amp;&amp; loggingEvent.stack &amp;&amp; JSON.stringify(loggingEvent) === '{}') {</span>
+<span class="cstat-no" title="statement not covered" >      loggingEvent = { stack: loggingEvent.stack };</span>
+    }
+<span class="cstat-no" title="statement not covered" >    socket.write(JSON.stringify(loggingEvent), 'utf8');</span>
+<span class="cstat-no" title="statement not covered" >    socket.write(END_MSG, 'utf8');</span>
+  }
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >emptyBuffer(</span>) {
+    let evt;
+&nbsp;
+    /* eslint no-cond-assign:0 */
+<span class="cstat-no" title="statement not covered" >    while ((evt = buffer.shift())) {</span>
+<span class="cstat-no" title="statement not covered" >      write(evt);</span>
+    }
+  }
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >createSocket(</span>) {
+<span class="cstat-no" title="statement not covered" >    socket = net.createConnection(config.loggerPort || 5000, config.loggerHost || 'localhost');</span>
+<span class="cstat-no" title="statement not covered" >    socket.on('connect', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      emptyBuffer();</span>
+<span class="cstat-no" title="statement not covered" >      canWrite = true;</span>
+    });
+<span class="cstat-no" title="statement not covered" >    socket.on('timeout', socket.end.bind(socket));</span>
+    // don't bother listening for 'error', 'close' gets called after that anyway
+<span class="cstat-no" title="statement not covered" >    socket.on('close', createSocket);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  createSocket();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return function <span class="fstat-no" title="function not covered" >log(</span>loggingEvent) {</span>
+<span class="cstat-no" title="statement not covered" >    if (canWrite) {</span>
+<span class="cstat-no" title="statement not covered" >      write(loggingEvent);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      buffer.push(loggingEvent);</span>
+    }
+  };
+}
+&nbsp;
+function createAppender(config) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (config.mode === 'master') {
+    return logServer(config);
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return workerAppender(config);</span>
+}
+&nbsp;
+function configure(config, options) {
+  let actualAppender;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (config.appender &amp;&amp; config.mode === 'master') {
+    log4js.loadAppender(config.appender.type);
+    actualAppender = log4js.appenderMakers[config.appender.type](config.appender, options);
+    config.actualAppender = actualAppender;
+  }
+  return createAppender(config);
+}
+&nbsp;
+function shutdown(done) {
+  let toBeClosed = servers.length;
+  servers.forEach(function (server) {
+    server.close(function () {
+      toBeClosed -= 1;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (toBeClosed &lt; 1) {
+        done();
+      }
+    });
+  });
+}
+&nbsp;
+module.exports.appender = createAppender;
+module.exports.configure = configure;
+module.exports.shutdown = shutdown;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 27 2016 08:29:28 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

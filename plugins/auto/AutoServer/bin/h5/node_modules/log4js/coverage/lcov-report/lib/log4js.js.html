@@ -1,0 +1,1685 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/log4js.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> log4js.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">55.96% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>108/193</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">52.69% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>49/93</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">53.49% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>23/43</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">56.25% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>108/192</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint no-prototype-builtins:1,no-restricted-syntax:[1, "ForInStatement"],no-plusplus:0 */
+&nbsp;
+'use strict';
+&nbsp;
+/**
+ * @fileoverview log4js is a library to log in JavaScript in similar manner
+ * than in log4j for Java. The API should be nearly the same.
+ *
+ * &lt;h3&gt;Example:&lt;/h3&gt;
+ * &lt;pre&gt;
+ *  let logging = require('log4js');
+ *  //add an appender that logs all messages to stdout.
+ *  logging.addAppender(logging.consoleAppender());
+ *  //add an appender that logs 'some-category' to a file
+ *  logging.addAppender(logging.fileAppender('file.log'), 'some-category');
+ *  //get a logger
+ *  let log = logging.getLogger('some-category');
+ *  log.setLevel(logging.levels.TRACE); //set the Level
+ *
+ *  ...
+ *
+ *  //call the log
+ *  log.trace('trace me' );
+ * &lt;/pre&gt;
+ *
+ * NOTE: the authors below are the original browser-based log4js authors
+ * don't try to contact them about bugs in this version :)
+ * @version 1.0
+ * @author Stephan Strittmatter - http://jroller.com/page/stritti
+ * @author Seth Chisamore - http://www.chisamore.com
+ * @since 2005-05-20
+ * @static
+ * Website: http://log4js.berlios.de
+ */
+const fs = require('fs');
+const util = require('util');
+const layouts = require('./layouts');
+const levels = require('./levels');
+const loggerModule = require('./logger');
+const connectLogger = require('./connect-logger').connectLogger;
+&nbsp;
+const Logger = loggerModule.Logger;
+&nbsp;
+const ALL_CATEGORIES = '[all]';
+const loggers = {};
+const appenderMakers = {};
+const appenderShutdowns = {};
+const defaultConfig = {
+  appenders: [
+    { type: 'stdout' }
+  ],
+  replaceConsole: false
+};
+&nbsp;
+let appenders = {};
+&nbsp;
+function hasLogger(logger) {
+  return loggers.hasOwnProperty(logger);
+}
+&nbsp;
+// todo: this method should be moved back to levels.js, but for loop require, need some refactor
+levels.forName = <span class="fstat-no" title="function not covered" >fu</span>nction (levelStr, levelVal) {
+  let level;
+<span class="cstat-no" title="statement not covered" >  if (typeof levelStr === 'string' &amp;&amp; typeof levelVal === 'number') {</span>
+    const levelUpper = <span class="cstat-no" title="statement not covered" >levelStr.toUpperCase();</span>
+<span class="cstat-no" title="statement not covered" >    level = new levels.Level(levelVal, levelUpper);</span>
+<span class="cstat-no" title="statement not covered" >    loggerModule.addLevelMethods(level);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return level;</span>
+};
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getBufferedLogger(</span>categoryName) {
+  const baseLogger = <span class="cstat-no" title="statement not covered" >getLogger(categoryName);</span>
+  const logger = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >  logger.temp = [];</span>
+<span class="cstat-no" title="statement not covered" >  logger.target = baseLogger;</span>
+<span class="cstat-no" title="statement not covered" >  logger.flush = <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >    for (let i = 0; i &lt; logger.temp.length; i++) {</span>
+      const log = <span class="cstat-no" title="statement not covered" >logger.temp[i];</span>
+<span class="cstat-no" title="statement not covered" >      logger.target[log.level](log.message);</span>
+<span class="cstat-no" title="statement not covered" >      delete logger.temp[i];</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  logger.trace = <span class="fstat-no" title="function not covered" >fu</span>nction (message) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.temp.push({ level: 'trace', message: message });</span>
+  };
+<span class="cstat-no" title="statement not covered" >  logger.debug = <span class="fstat-no" title="function not covered" >fu</span>nction (message) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.temp.push({ level: 'debug', message: message });</span>
+  };
+<span class="cstat-no" title="statement not covered" >  logger.info = <span class="fstat-no" title="function not covered" >fu</span>nction (message) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.temp.push({ level: 'info', message: message });</span>
+  };
+<span class="cstat-no" title="statement not covered" >  logger.warn = <span class="fstat-no" title="function not covered" >fu</span>nction (message) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.temp.push({ level: 'warn', message: message });</span>
+  };
+<span class="cstat-no" title="statement not covered" >  logger.error = <span class="fstat-no" title="function not covered" >fu</span>nction (message) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.temp.push({ level: 'error', message: message });</span>
+  };
+<span class="cstat-no" title="statement not covered" >  logger.fatal = <span class="fstat-no" title="function not covered" >fu</span>nction (message) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.temp.push({ level: 'fatal', message: message });</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return logger;</span>
+}
+&nbsp;
+function normalizeCategory(category) {
+  return `${category}.`;
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >doesLevelEntryContainsLogger(</span>levelCategory, loggerCategory) {
+  const normalizedLevelCategory = <span class="cstat-no" title="statement not covered" >normalizeCategory(levelCategory);</span>
+  const normalizedLoggerCategory = <span class="cstat-no" title="statement not covered" >normalizeCategory(loggerCategory);</span>
+<span class="cstat-no" title="statement not covered" >  return normalizedLoggerCategory.substring(0, normalizedLevelCategory.length) === normalizedLevelCategory;</span>
+}
+&nbsp;
+function doesAppenderContainsLogger(appenderCategory, loggerCategory) {
+  const normalizedAppenderCategory = normalizeCategory(appenderCategory);
+  const normalizedLoggerCategory = normalizeCategory(loggerCategory);
+  return normalizedLoggerCategory.substring(0, normalizedAppenderCategory.length) === normalizedAppenderCategory;
+}
+&nbsp;
+/**
+ * Get a logger instance. Instance is cached on categoryName level.
+ * @static
+ * @param loggerCategoryName
+ * @return {Logger} instance of logger for the category
+ */
+function getLogger(loggerCategoryName) {
+  // Use default logger if categoryName is not specified or invalid
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof loggerCategoryName !== 'string') {
+<span class="cstat-no" title="statement not covered" >    loggerCategoryName = Logger.DEFAULT_CATEGORY;</span>
+  }
+&nbsp;
+  if (!hasLogger(loggerCategoryName)) {
+    let level;
+&nbsp;
+    /* jshint -W073 */
+    // If there's a 'levels' entry in the configuration
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (levels.config) {
+      // Goes through the categories in the levels configuration entry,
+      // starting with the 'higher' ones.
+      const keys = <span class="cstat-no" title="statement not covered" >Object.keys(levels.config).sort();</span>
+<span class="cstat-no" title="statement not covered" >      for (let idx = 0; idx &lt; keys.length; idx++) {</span>
+        const levelCategory = <span class="cstat-no" title="statement not covered" >keys[idx];</span>
+<span class="cstat-no" title="statement not covered" >        if (doesLevelEntryContainsLogger(levelCategory, loggerCategoryName)) {</span>
+          // level for the logger
+<span class="cstat-no" title="statement not covered" >          level = levels.config[levelCategory];</span>
+        }
+      }
+    }
+    /* jshint +W073 */
+&nbsp;
+    // Create the logger for this name if it doesn't already exist
+    loggers[loggerCategoryName] = new Logger(loggerCategoryName, level);
+&nbsp;
+    /* jshint -W083 */
+    let appenderList;
+    for (const appenderCategory in appenders) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (doesAppenderContainsLogger(appenderCategory, loggerCategoryName)) {
+        appenderList = appenders[appenderCategory];
+        appenderList.forEach((appender) =&gt; {
+          loggers[loggerCategoryName].addListener('log', appender);
+        });
+      }
+    }
+    /* jshint +W083 */
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (appenders[ALL_CATEGORIES]) {
+<span class="cstat-no" title="statement not covered" >      appenderList = appenders[ALL_CATEGORIES];</span>
+<span class="cstat-no" title="statement not covered" >      appenderList.forEach(<span class="fstat-no" title="function not covered" >(a</span>ppender) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        loggers[loggerCategoryName].addListener('log', appender);</span>
+      });
+    }
+  }
+&nbsp;
+  return loggers[loggerCategoryName];
+}
+&nbsp;
+/**
+ * args are appender, optional shutdown function, then zero or more categories
+ */
+function addAppender() {
+  /* eslint prefer-rest-params:0 */
+  // todo: once node v4 support dropped, use rest parameter instead
+  let args = Array.from(arguments);
+  const appender = args.shift();
+  // check for a shutdown fn
+  if (args.length &gt; 0 &amp;&amp; typeof args[0] === 'function') {
+    appenderShutdowns[appender] = args.shift();
+  }
+&nbsp;
+  if (args.length === 0 || args[0] === undefined) {
+    args = [ALL_CATEGORIES];
+  }
+  // argument may already be an array
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (Array.isArray(args[0])) {
+<span class="cstat-no" title="statement not covered" >    args = args[0];</span>
+  }
+&nbsp;
+  args.forEach((appenderCategory) =&gt; {
+    addAppenderToCategory(appender, appenderCategory);
+&nbsp;
+    if (appenderCategory === ALL_CATEGORIES) {
+      addAppenderToAllLoggers(appender);
+    } else {
+      for (const loggerCategory in loggers) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (doesAppenderContainsLogger(appenderCategory, loggerCategory)) {
+          loggers[loggerCategory].addListener('log', appender);
+        }
+      }
+    }
+  });
+}
+&nbsp;
+function addAppenderToAllLoggers(appender) {
+  for (const logger in loggers) {
+<span class="cstat-no" title="statement not covered" >    if (hasLogger(logger)) {</span>
+<span class="cstat-no" title="statement not covered" >      loggers[logger].addListener('log', appender);</span>
+    }
+  }
+}
+&nbsp;
+function addAppenderToCategory(appender, category) {
+  if (!appenders[category]) {
+    appenders[category] = [];
+  }
+  appenders[category].push(appender);
+}
+&nbsp;
+function clearAppenders() {
+  // if we're calling clearAppenders, we're probably getting ready to write
+  // so turn log writes back on, just in case this is after a shutdown
+  loggerModule.enableAllLogWrites();
+  appenders = {};
+  for (const logger in loggers) {
+<span class="cstat-no" title="statement not covered" >    if (hasLogger(logger)) {</span>
+<span class="cstat-no" title="statement not covered" >      loggers[logger].removeAllListeners('log');</span>
+    }
+  }
+}
+&nbsp;
+function configureAppenders(appenderList, options) {
+  clearAppenders();
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (appenderList) {
+    appenderList.forEach((appenderConfig) =&gt; {
+      loadAppender(appenderConfig.type);
+      let appender;
+      appenderConfig.makers = appenderMakers;
+      try {
+        appender = appenderMakers[appenderConfig.type](appenderConfig, options);
+        addAppender(appender, appenderConfig.category);
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        throw new Error(`log4js configuration problem for ${util.inspect(appenderConfig)}`, e);</span>
+      }
+    });
+  }
+}
+&nbsp;
+function configureLevels(_levels) {
+  levels.config = _levels; // Keep it so we can create loggers later using this cfg
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (_levels) {
+    const keys = <span class="cstat-no" title="statement not covered" >Object.keys(levels.config).sort();</span>
+&nbsp;
+    /* eslint-disable guard-for-in */
+<span class="cstat-no" title="statement not covered" >    for (const idx in keys) {</span>
+      const category = <span class="cstat-no" title="statement not covered" >keys[idx];</span>
+<span class="cstat-no" title="statement not covered" >      if (category === ALL_CATEGORIES) {</span>
+<span class="cstat-no" title="statement not covered" >        setGlobalLogLevel(_levels[category]);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      for (const loggerCategory in loggers) {</span>
+<span class="cstat-no" title="statement not covered" >        if (doesLevelEntryContainsLogger(category, loggerCategory)) {</span>
+<span class="cstat-no" title="statement not covered" >          loggers[loggerCategory].setLevel(_levels[category]);</span>
+        }
+      }
+    }
+  }
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >setGlobalLogLevel(</span>level) {
+<span class="cstat-no" title="statement not covered" >  Logger.prototype.level = levels.toLevel(level, levels.TRACE);</span>
+}
+&nbsp;
+/**
+ * Get the default logger instance.
+ * @return {Logger} instance of default logger
+ * @static
+ */
+function <span class="fstat-no" title="function not covered" >getDefaultLogger(</span>) {
+<span class="cstat-no" title="statement not covered" >  return getLogger(Logger.DEFAULT_CATEGORY);</span>
+}
+&nbsp;
+const configState = {};
+&nbsp;
+function loadConfigurationFile(filename) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (filename) {
+<span class="cstat-no" title="statement not covered" >    return JSON.parse(fs.readFileSync(filename, 'utf8'));</span>
+  }
+  return undefined;
+}
+&nbsp;
+function configureOnceOff(config, options) {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (config) {
+    try {
+      restoreConsole();
+      configureLevels(config.levels);
+      configureAppenders(config.appenders, options);
+&nbsp;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (config.replaceConsole) {
+<span class="cstat-no" title="statement not covered" >        replaceConsole();</span>
+      }
+    } catch (e) {
+<span class="cstat-no" title="statement not covered" >      throw new Error(</span>
+        `Problem reading log4js config ${util.inspect(config)}. Error was '${e.message}' (${e.stack})`
+      );
+    }
+  }
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >reloadConfiguration(</span>options) {
+  const mtime = <span class="cstat-no" title="statement not covered" >getMTime(configState.filename);</span>
+<span class="cstat-no" title="statement not covered" >  if (!mtime) <span class="cstat-no" title="statement not covered" >return;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (configState.lastMTime &amp;&amp; (mtime.getTime() &gt; configState.lastMTime.getTime())) {</span>
+<span class="cstat-no" title="statement not covered" >    configureOnceOff(loadConfigurationFile(configState.filename), options);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  configState.lastMTime = mtime;</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getMTime(</span>filename) {
+  let mtime;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    mtime = fs.statSync(configState.filename).mtime;</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    getLogger('log4js').warn(`Failed to load configuration file ${filename}`);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return mtime;</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >initReloadConfiguration(</span>filename, options) {
+<span class="cstat-no" title="statement not covered" >  if (configState.timerId) {</span>
+<span class="cstat-no" title="statement not covered" >    clearInterval(configState.timerId);</span>
+<span class="cstat-no" title="statement not covered" >    delete configState.timerId;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  configState.filename = filename;</span>
+<span class="cstat-no" title="statement not covered" >  configState.lastMTime = getMTime(filename);</span>
+<span class="cstat-no" title="statement not covered" >  configState.timerId = setInterval(reloadConfiguration, options.reloadSecs * 1000, options);</span>
+}
+&nbsp;
+function configure(configurationFileOrObject, options) {
+  let config = configurationFileOrObject;
+  config = config || process.env.LOG4JS_CONFIG;
+  options = options || {};
+&nbsp;
+  if (config === undefined || config === null || typeof config === 'string') {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.reloadSecs) {
+<span class="cstat-no" title="statement not covered" >      initReloadConfiguration(config, options);</span>
+    }
+    config = loadConfigurationFile(config) || defaultConfig;
+  } else {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (options.reloadSecs) { // eslint-disable-line
+<span class="cstat-no" title="statement not covered" >      getLogger('log4js').warn(</span>
+        'Ignoring configuration reload parameter for "object" configuration.'
+      );
+    }
+  }
+  configureOnceOff(config, options);
+}
+&nbsp;
+const originalConsoleFunctions = {
+  log: console.log,
+  debug: console.debug,
+  info: console.info,
+  warn: console.warn,
+  error: console.error
+};
+&nbsp;
+function <span class="fstat-no" title="function not covered" >replaceConsole(</span>logger) {
+  function <span class="fstat-no" title="function not covered" >replaceWith(</span>fn) {
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+      /* eslint prefer-rest-params:0 */
+      // todo: once node v4 support dropped, use rest parameter instead
+<span class="cstat-no" title="statement not covered" >      fn.apply(logger, Array.from(arguments));</span>
+    };
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  logger = logger || getLogger('console');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  ['log', 'debug', 'info', 'warn', 'error'].forEach(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    console[item] = replaceWith(item === 'log' ? logger.info : logger[item]);</span>
+  });
+}
+&nbsp;
+function restoreConsole() {
+  ['log', 'debug', 'info', 'warn', 'error'].forEach((item) =&gt; {
+    console[item] = originalConsoleFunctions[item];
+  });
+}
+&nbsp;
+/* eslint global-require:0 */
+/**
+ * Load an appenderModule based on the provided appender filepath. Will first
+ * check if the appender path is a subpath of the log4js 'lib/appenders' directory.
+ * If not, it will attempt to load the the appender as complete path.
+ *
+ * @param {string} appender The filepath for the appender.
+ * @returns {Object|null} The required appender or null if appender could not be loaded.
+ * @private
+ */
+function requireAppender(appender) {
+  let appenderModule;
+  try {
+    appenderModule = require(`./appenders/${appender}`); // eslint-disable-line
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    appenderModule = require(appender); </span>// eslint-disable-line
+  }
+  return appenderModule;
+}
+&nbsp;
+/**
+ * Load an appender. Provided the appender path to be loaded. If appenderModule is defined,
+ * it will be used in place of requiring the appender module.
+ *
+ * @param {string} appender The path to the appender module.
+ * @param {Object|void} [appenderModule] The pre-required appender module. When provided,
+ * instead of requiring the appender by its path, this object will be used.
+ * @returns {void}
+ * @private
+ */
+function loadAppender(appender, appenderModule) {
+  appenderModule = appenderModule || requireAppender(appender);
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!appenderModule) {
+<span class="cstat-no" title="statement not covered" >    throw new Error(`Invalid log4js appender: ${util.inspect(appender)}`);</span>
+  }
+&nbsp;
+  log4js.appenders[appender] = appenderModule.appender.bind(appenderModule);
+  if (appenderModule.shutdown) {
+    appenderShutdowns[appender] = appenderModule.shutdown.bind(appenderModule);
+  }
+  appenderMakers[appender] = appenderModule.configure.bind(appenderModule);
+}
+&nbsp;
+/**
+ * Shutdown all log appenders. This will first disable all writing to appenders
+ * and then call the shutdown function each appender.
+ *
+ * @params {Function} cb - The callback to be invoked once all appenders have
+ *  shutdown. If an error occurs, the callback will be given the error object
+ *  as the first argument.
+ */
+function shutdown(cb) {
+  // First, disable all writing to appenders. This prevents appenders from
+  // not being able to be drained because of run-away log writes.
+  loggerModule.disableAllLogWrites();
+&nbsp;
+  // turn off config reloading
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (configState.timerId) {
+<span class="cstat-no" title="statement not covered" >    clearInterval(configState.timerId);</span>
+  }
+&nbsp;
+  // Call each of the shutdown functions in parallel
+  let completed = 0;
+  let error;
+  const shutdownFunctions = [];
+&nbsp;
+  function complete(err) {
+    error = error || err;
+    completed++;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (completed &gt;= shutdownFunctions.length) {
+      cb(error);
+    }
+  }
+&nbsp;
+  for (const category in appenderShutdowns) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (appenderShutdowns.hasOwnProperty(category)) {
+      shutdownFunctions.push(appenderShutdowns[category]);
+    }
+  }
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!shutdownFunctions.length) {
+<span class="cstat-no" title="statement not covered" >    return cb();</span>
+  }
+&nbsp;
+  shutdownFunctions.forEach((shutdownFct) =&gt; {
+    shutdownFct(complete);
+  });
+&nbsp;
+  return null;
+}
+&nbsp;
+/**
+ * @name log4js
+ * @namespace Log4js
+ * @property getBufferedLogger
+ * @property getLogger
+ * @property getDefaultLogger
+ * @property hasLogger
+ * @property addAppender
+ * @property loadAppender
+ * @property clearAppenders
+ * @property configure
+ * @property shutdown
+ * @property replaceConsole
+ * @property restoreConsole
+ * @property levels
+ * @property setGlobalLogLevel
+ * @property layouts
+ * @property appenders
+ * @property appenderMakers
+ * @property connectLogger
+ */
+const log4js = {
+  getBufferedLogger,
+  getLogger,
+  getDefaultLogger,
+  hasLogger,
+&nbsp;
+  addAppender,
+  loadAppender,
+  clearAppenders,
+  configure,
+  shutdown,
+&nbsp;
+  replaceConsole,
+  restoreConsole,
+&nbsp;
+  levels,
+  setGlobalLogLevel,
+&nbsp;
+  layouts,
+  appenders: {},
+  appenderMakers,
+  connectLogger
+};
+&nbsp;
+module.exports = log4js;
+&nbsp;
+// set ourselves up
+configure();
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 27 2016 08:29:28 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

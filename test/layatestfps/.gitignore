@@ -1,0 +1,5 @@
+# project ignores
+bin/laya
+bin/h5/index.html
+*.dist.js
+*.dist.json

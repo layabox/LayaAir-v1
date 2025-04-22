@@ -1,0 +1,15 @@
+{
+  "name": "layatestfps",
+  "version": "1.0.0",
+  "description": "npm test",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.6.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "leo",
+  "license": "MIT"
+}

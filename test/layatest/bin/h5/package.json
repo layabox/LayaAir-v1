@@ -1,0 +1,25 @@
+{
+  "name": "layatest",
+  "version": "1.0.0",
+  "description": "npm test",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "browserify": "^14.4.0",
+    "electron": "^1.6.11"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  },
+  "scripts": {
+    "test": "npm run dist && npm run coverage",
+	"dist": "browserify ./test/index.js > ./test/test.dist.js",
+	"timetest": "npm run timedist && npm run coverage",
+	"timedist": "browserify ./test/timetest/index.js > ./test/test.dist.js",
+	"coverage": "electron ."
+  },
+  "author": "leo",
+  "license": "MIT"
+}

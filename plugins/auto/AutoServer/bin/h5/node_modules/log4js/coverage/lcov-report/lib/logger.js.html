@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/logger.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> logger.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.55% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>35/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.54% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">81.4% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>35/43</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint no-underscore-dangle:0 */
+&nbsp;
+'use strict';
+&nbsp;
+const levels = require('./levels');
+const EventEmitter = require('events');
+&nbsp;
+const DEFAULT_CATEGORY = '[default]';
+&nbsp;
+let logWritesEnabled = true;
+&nbsp;
+/**
+ * @name LoggingEvent
+ * @namespace Log4js
+ */
+class LoggingEvent {
+  /**
+   * Models a logging event.
+   * @constructor
+   * @param {String} categoryName name of category
+   * @param {Log4js.Level} level level of message
+   * @param {Array} data objects to log
+   * @param {Logger} logger the associated logger
+   * @author Seth Chisamore
+   */
+  constructor(categoryName, level, data, logger) {
+    this.startTime = new Date();
+    this.categoryName = categoryName;
+    this.data = data;
+    this.level = level;
+    this.logger = logger;
+  }
+}
+&nbsp;
+/**
+ * Logger to log messages.
+ * use {@see log4js#getLogger(String)} to get an instance.
+ *
+ * @name Logger
+ * @namespace Log4js
+ * @param name name of category to log to
+ * @param level
+ *
+ * @author Stephan Strittmatter
+ */
+class Logger extends EventEmitter {
+  constructor(name, level) {
+    super();
+&nbsp;
+    this.category = name || <span class="branch-1 cbranch-no" title="branch not covered" >DEFAULT_CATEGORY;</span>
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (level) {
+<span class="cstat-no" title="statement not covered" >      this.setLevel(level);</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  se</span>tLevel(level) {
+<span class="cstat-no" title="statement not covered" >    this.level = levels.toLevel(level, this.level || levels.TRACE);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>moveLevel() {
+<span class="cstat-no" title="statement not covered" >    delete this.level;</span>
+  }
+&nbsp;
+  log() {
+    /* eslint prefer-rest-params:0 */
+    // todo: once node v4 support dropped, use rest parameter instead
+    const args = Array.from(arguments);
+    const logLevel = levels.toLevel(args[0], levels.INFO);
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.isLevelEnabled(logLevel)) {
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+    this._log(logLevel, args.slice(1));
+  }
+&nbsp;
+  isLevelEnabled(otherLevel) {
+    return this.level.isLessThanOrEqualTo(otherLevel);
+  }
+&nbsp;
+  _log(level, data) {
+    const loggingEvent = new LoggingEvent(this.category, level, data, this);
+    this.emit('log', loggingEvent);
+  }
+}
+&nbsp;
+Logger.DEFAULT_CATEGORY = DEFAULT_CATEGORY;
+Logger.prototype.level = levels.TRACE;
+&nbsp;
+['Trace', 'Debug', 'Info', 'Warn', 'Error', 'Fatal', 'Mark'].forEach(addLevelMethods);
+&nbsp;
+function addLevelMethods(target) {
+  const level = levels.toLevel(target);
+&nbsp;
+  const levelStrLower = level.toString().toLowerCase();
+  const levelMethod = levelStrLower.replace(/_([a-z])/g, <span class="fstat-no" title="function not covered" >g </span>=&gt; <span class="cstat-no" title="statement not covered" >g[1].toUpperCase())</span>;
+  const isLevelMethod = levelMethod[0].toUpperCase() + levelMethod.slice(1);
+&nbsp;
+  Logger.prototype[`is${isLevelMethod}Enabled`] = <span class="fstat-no" title="function not covered" >fu</span>nction () {
+<span class="cstat-no" title="statement not covered" >    return this.isLevelEnabled(level.toString());</span>
+  };
+&nbsp;
+  Logger.prototype[levelMethod] = <span class="fstat-no" title="function not covered" >fu</span>nction () {
+    /* eslint prefer-rest-params:0 */
+    // todo: once node v4 support dropped, use rest parameter instead
+    const args = <span class="cstat-no" title="statement not covered" >Array.from(arguments);</span>
+<span class="cstat-no" title="statement not covered" >    if (logWritesEnabled &amp;&amp; this.isLevelEnabled(level)) {</span>
+<span class="cstat-no" title="statement not covered" >      this._log(level, args);</span>
+    }
+  };
+}
+&nbsp;
+/**
+ * Disable all log writes.
+ * @returns {void}
+ */
+function disableAllLogWrites() {
+  logWritesEnabled = false;
+}
+&nbsp;
+/**
+ * Enable log writes.
+ * @returns {void}
+ */
+function enableAllLogWrites() {
+  logWritesEnabled = true;
+}
+&nbsp;
+module.exports.LoggingEvent = LoggingEvent;
+module.exports.Logger = Logger;
+module.exports.disableAllLogWrites = disableAllLogWrites;
+module.exports.enableAllLogWrites = enableAllLogWrites;
+module.exports.addLevelMethods = addLevelMethods;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 27 2016 08:29:28 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

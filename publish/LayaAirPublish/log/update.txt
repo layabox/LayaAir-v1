@@ -1,0 +1,4 @@
+git status
+git add *
+git commit -m "1.7.6beta"
+git push

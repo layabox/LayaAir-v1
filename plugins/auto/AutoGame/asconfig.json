@@ -1,0 +1,12 @@
+{
+    "config": "js",
+    "compilerOptions": {
+        "debug": true,
+        "source-path": [
+            "libs/laya/src"
+        ]
+    },
+    "files": [
+        "src/LayaUISample.as"
+    ]
+}

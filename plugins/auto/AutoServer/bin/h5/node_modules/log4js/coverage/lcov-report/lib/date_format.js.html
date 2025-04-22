@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/date_format.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> date_format.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.16% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">13.16% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/38</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+module.exports.ISO8601_FORMAT = 'yyyy-MM-dd hh:mm:ss.SSS';
+module.exports.ISO8601_WITH_TZ_OFFSET_FORMAT = 'yyyy-MM-ddThh:mm:ss.SSSO';
+module.exports.DATETIME_FORMAT = 'dd MM yyyy hh:mm:ss.SSS';
+module.exports.ABSOLUTETIME_FORMAT = 'hh:mm:ss.SSS';
+&nbsp;
+function <span class="fstat-no" title="function not covered" >padWithZeros(</span>vNumber, width) {
+  let numAsString = <span class="cstat-no" title="statement not covered" >vNumber.toString();</span>
+<span class="cstat-no" title="statement not covered" >  while (numAsString.length &lt; width) {</span>
+<span class="cstat-no" title="statement not covered" >    numAsString = `0${numAsString}`;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return numAsString;</span>
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >addZero(</span>vNumber) {
+<span class="cstat-no" title="statement not covered" >  return padWithZeros(vNumber, 2);</span>
+}
+&nbsp;
+/**
+ * Formats the TimeOffset
+ * Thanks to http://www.svendtofte.com/code/date_format/
+ * @private
+ */
+function <span class="fstat-no" title="function not covered" >offset(</span>timezoneOffset) {
+  // Difference to Greenwich time (GMT) in hours
+  const os = <span class="cstat-no" title="statement not covered" >Math.abs(timezoneOffset);</span>
+  let h = <span class="cstat-no" title="statement not covered" >String(Math.floor(os / 60));</span>
+  let m = <span class="cstat-no" title="statement not covered" >String(os % 60);</span>
+<span class="cstat-no" title="statement not covered" >  if (h.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >    h = `0${h}`;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (m.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >    m = `0${m}`;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return timezoneOffset &lt; 0 ? `+${h}${m}` : `-${h}${m}`;</span>
+}
+&nbsp;
+module.exports.asString = <span class="fstat-no" title="function not covered" >fu</span>nction (format, date, timezoneOffset) {
+<span class="cstat-no" title="statement not covered" >  if (typeof format !== 'string') {</span>
+<span class="cstat-no" title="statement not covered" >    timezoneOffset = date;</span>
+<span class="cstat-no" title="statement not covered" >    date = format;</span>
+<span class="cstat-no" title="statement not covered" >    format = module.exports.ISO8601_FORMAT;</span>
+  }
+  // make the date independent of the system timezone by working with UTC
+<span class="cstat-no" title="statement not covered" >  if (timezoneOffset === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    timezoneOffset = date.getTimezoneOffset();</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  date.setUTCMinutes(date.getUTCMinutes() - timezoneOffset);</span>
+  const vDay = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCDate());</span>
+  const vMonth = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCMonth() + 1);</span>
+  const vYearLong = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCFullYear());</span>
+  const vYearShort = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCFullYear().toString().substring(2, 4));</span>
+  const vYear = (<span class="cstat-no" title="statement not covered" >format.indexOf('yyyy') &gt; -1 ? vYearLong : vYearShort)</span>;
+  const vHour = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCHours());</span>
+  const vMinute = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCMinutes());</span>
+  const vSecond = <span class="cstat-no" title="statement not covered" >addZero(date.getUTCSeconds());</span>
+  const vMillisecond = <span class="cstat-no" title="statement not covered" >padWithZeros(date.getUTCMilliseconds(), 3);</span>
+  const vTimeZone = <span class="cstat-no" title="statement not covered" >offset(timezoneOffset);</span>
+<span class="cstat-no" title="statement not covered" >  date.setUTCMinutes(date.getUTCMinutes() + timezoneOffset);</span>
+  const formatted = <span class="cstat-no" title="statement not covered" >format</span>
+    .replace(/dd/g, vDay)
+    .replace(/MM/g, vMonth)
+    .replace(/y{1,4}/g, vYear)
+    .replace(/hh/g, vHour)
+    .replace(/mm/g, vMinute)
+    .replace(/ss/g, vSecond)
+    .replace(/SSS/g, vMillisecond)
+    .replace(/O/g, vTimeZone);
+<span class="cstat-no" title="statement not covered" >  return formatted;</span>
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 27 2016 08:29:28 GMT+1100 (AEDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
