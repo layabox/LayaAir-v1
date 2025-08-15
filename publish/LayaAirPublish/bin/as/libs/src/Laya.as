@@ -37,7 +37,7 @@ package {
 		/** 加载管理器的引用。*/
 		public static var loader:LoaderManager = null;
 		/** 当前引擎版本。*/
-		public static var version:String = "1.8.13beta";
+		public static var version:String = "1.8.17";
 		/**@private Render 类的引用。*/
 		public static var render:Render;
 		/**@private */
@@ -88,7 +88,7 @@ package {
 			_getUrlPath();
 			
 			/*[IF-FLASH]*/
-			render = new Render(50, 50);
+			render = Laya.createRender();
 			//[IF-JS]render = new Render(0, 0);
 			stage.size(width, height);
 			RenderSprite.__init__();
@@ -100,6 +100,10 @@ package {
 			return Render.canvas;
 		}
 		
+		public static function createRender():Render {
+			return new Render(50, 50);
+		}
+
 		private static function _getUrlPath():void {
 			var location:* = Browser.window.location;
 			var pathName:String = location.pathname;

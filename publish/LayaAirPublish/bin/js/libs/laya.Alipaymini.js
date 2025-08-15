@@ -5,7 +5,8 @@
 	var Browser=laya.utils.Browser,Config=Laya.Config,Event=laya.events.Event,EventDispatcher=laya.events.EventDispatcher;
 	var HTMLImage=laya.resource.HTMLImage,Handler=laya.utils.Handler,Input=laya.display.Input,Loader=laya.net.Loader;
 	var LocalStorage=laya.net.LocalStorage,Matrix=laya.maths.Matrix,Render=laya.renders.Render,RunDriver=laya.utils.RunDriver;
-	var SoundChannel=laya.media.SoundChannel,SoundManager=laya.media.SoundManager,URL=laya.net.URL,Utils=laya.utils.Utils;
+	var SoundChannel=laya.media.SoundChannel,SoundManager=laya.media.SoundManager,Stage=laya.display.Stage,URL=laya.net.URL;
+	var Utils=laya.utils.Utils;
 //class laya.ali.mini.ALIMiniAdapter
 var ALIMiniAdapter=(function(){
 	function ALIMiniAdapter(){}
@@ -61,6 +62,81 @@ var ALIMiniAdapter=(function(){
 		MiniLocalStorage$6.__init__();
 		ALIMiniAdapter.onReciveData();
 		Config.useRetinalCanvas=true;
+		Laya.createRender=laya.ali.mini.ALIMiniAdapter.aliPayCreateRender;
+	}
+
+	ALIMiniAdapter.aliPayCreateRender=function(){
+		var screenWidth=Browser.clientWidth *Browser.pixelRatio;
+		var screenHeight=Browser.clientHeight *Browser.pixelRatio;
+		var rotation=false;
+		if (Laya.stage._screenMode!==/*laya.display.Stage.SCREEN_NONE*/"none"){
+			var screenType=screenWidth / screenHeight < 1 ? /*laya.display.Stage.SCREEN_VERTICAL*/"vertical" :/*laya.display.Stage.SCREEN_HORIZONTAL*/"horizontal";
+			rotation=screenType!==Laya.stage._screenMode;
+			if (rotation){
+				var temp=screenHeight;
+				screenHeight=screenWidth;
+				screenWidth=temp;
+			}
+		}
+		Laya.stage.canvasRotation=rotation;
+		var canvas=Render._mainCanvas;
+		var canvasStyle=canvas.source.style;
+		var mat=Laya.stage._canvasTransform.identity();
+		var scaleMode=Laya.stage._scaleMode;
+		var scaleX=screenWidth / Laya.stage.designWidth;
+		var scaleY=screenHeight / Laya.stage.designHeight;
+		var canvasWidth=Config.useRetinalCanvas?screenWidth:Laya.stage.designWidth;
+		var canvasHeight=Config.useRetinalCanvas?screenHeight:Laya.stage.designHeight;
+		var realWidth=screenWidth;
+		var realHeight=screenHeight;
+		var pixelRatio=Browser.pixelRatio;
+		Laya.stage._width=Laya.stage.designWidth;
+		Laya.stage._height=Laya.stage.designHeight;
+		switch (scaleMode){
+			case /*laya.display.Stage.SCALE_NOSCALE*/"noscale":
+				scaleX=scaleY=1;
+				realWidth=Laya.stage.designWidth;
+				realHeight=Laya.stage.designHeight;
+				break ;
+			case /*laya.display.Stage.SCALE_SHOWALL*/"showall":
+				scaleX=scaleY=Math.min(scaleX,scaleY);
+				canvasWidth=realWidth=Math.round(Laya.stage.designWidth *scaleX);
+				canvasHeight=realHeight=Math.round(Laya.stage.designHeight *scaleY);
+				break ;
+			case /*laya.display.Stage.SCALE_NOBORDER*/"noborder":
+				scaleX=scaleY=Math.max(scaleX,scaleY);
+				realWidth=Math.round(Laya.stage.designWidth *scaleX);
+				realHeight=Math.round(Laya.stage.designHeight *scaleY);
+				break ;
+			case /*laya.display.Stage.SCALE_FULL*/"full":
+				scaleX=scaleY=1;
+				Laya.stage._width=canvasWidth=screenWidth;
+				Laya.stage._height=canvasHeight=screenHeight;
+				break ;
+			case /*laya.display.Stage.SCALE_FIXED_WIDTH*/"fixedwidth":
+				scaleY=scaleX;
+				Laya.stage._height=canvasHeight=Math.round(screenHeight / scaleX);
+				break ;
+			case /*laya.display.Stage.SCALE_FIXED_HEIGHT*/"fixedheight":
+				scaleX=scaleY;
+				Laya.stage._width=canvasWidth=Math.round(screenWidth / scaleY);
+				break ;
+			case /*laya.display.Stage.SCALE_FIXED_AUTO*/"fixedauto":
+				if ((screenWidth / screenHeight)< (Laya.stage.designWidth / Laya.stage.designHeight)){
+					scaleY=scaleX;
+					Laya.stage._height=canvasHeight=Math.round(screenHeight / scaleX);
+					}else {
+					scaleX=scaleY;
+					Laya.stage._width=canvasWidth=Math.round(screenWidth / scaleY);
+				}
+				break ;
+			}
+		if (Laya.stage.conchModel)Laya.stage.conchModel.size(Laya.stage._width,Laya.stage._height);
+		if (Config.useRetinalCanvas){
+			realWidth=canvasWidth=screenWidth;
+			realHeight=canvasHeight=screenHeight;
+		}
+		return new Render(canvasWidth,canvasHeight);
 	}
 
 	ALIMiniAdapter.onReciveData=function(){
@@ -872,15 +948,13 @@ var MiniInput$6=(function(){
 	}
 
 	MiniInput.inputEnter=function(isBool){
-		if(isBool){
-			MiniInput.hideKeyboard();
-		}
-		if(!Input['inputElement'].target)
-			return;
 		Input['inputElement'].target.focus=false;
 	}
 
-	MiniInput.wxinputblur=function(){}
+	MiniInput.wxinputblur=function(){
+		laya.ali.mini.MiniInput.hideKeyboard();
+	}
+
 	MiniInput.hideKeyboard=function(){
 		ALIMiniAdapter.window.my.offKeyboardConfirm();
 		ALIMiniAdapter.window.my.offKeyboardInput();

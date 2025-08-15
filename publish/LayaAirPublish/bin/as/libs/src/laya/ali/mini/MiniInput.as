@@ -88,16 +88,17 @@ package laya.ali.mini
 		}
 		
 		public static function inputEnter(isBool:Boolean):void {
-			if(isBool)
-			{
-				hideKeyboard();
-			}
-			if(!Input['inputElement'].target)
-				return;
+			// if(isBool)
+			// {
+			// 	hideKeyboard();
+			// }
+			// if(!Input['inputElement'].target)
+			// 	return;
 			Input['inputElement'].target.focus = false;
 		}
 		
 		public static function wxinputblur():void {
+			MiniInput.hideKeyboard();
 		}
 		
 		public static function hideKeyboard():void {

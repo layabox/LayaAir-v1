@@ -138,7 +138,7 @@ package laya.utils {
 			onEdge = /*[STATIC SAFE]*/ u.indexOf('Edge') > -1;
 			onMiniGame = /*[STATIC SAFE]*/ u.indexOf('MiniGame') > -1;
 			onBDMiniGame = /*[STATIC SAFE]*/ u.indexOf('SwanGame') > -1;
-			onHWMiniGame = /*[STATIC SAFE]*/ Browser.window.hasOwnProperty("hbs");
+			onHWMiniGame = /*[STATIC SAFE]*/ Browser.window.hasOwnProperty && Browser.window.hasOwnProperty("hbs");
 			
 			if(u.indexOf('OPPO') > -1 && u.indexOf('MiniGame') > -1)
 			{
@@ -146,19 +146,19 @@ package laya.utils {
 				onMiniGame = false;
 			}
 			
-			if (Browser.window.hasOwnProperty("bl") && u.indexOf('MiniGame') >-1)
+			if (Browser.window.hasOwnProperty && Browser.window.hasOwnProperty("bl") && u.indexOf('MiniGame') >-1)
 			{
 				onBLMiniGame=true;//BILI环境判断
 				onMiniGame=false;
 			}
 			
-			if (Browser.window.hasOwnProperty("qq") && u.indexOf('MiniGame') >-1)
+			if (Browser.window.hasOwnProperty && Browser.window.hasOwnProperty("qq") && u.indexOf('MiniGame') >-1)
 			{
 				onQQMiniGame=true;//QQ环境判断
 				onMiniGame=false;
 			}
 			
-			if (Browser.window.hasOwnProperty("tt") && u.indexOf('MiniGame') > -1) 
+			if (Browser.window.hasOwnProperty && Browser.window.hasOwnProperty("tt") && u.indexOf('MiniGame') > -1) 
 			{
 				onTTMiniGame = true;
 				onMiniGame = false;
@@ -175,7 +175,7 @@ package laya.utils {
 				onAlipayMiniGame = true;//阿里小游戏环境判断
 				onMiniGame = false;
 			}
-			if ((u.indexOf('TB') > -1 || u.indexOf('Taobao') > -1 || u.indexOf('TM/') >-1) && Browser.window.hasOwnProperty('my'))
+			if ((u.indexOf('TB') > -1 || u.indexOf('Taobao') > -1 || u.indexOf('TM/') >-1))
 			{
 				onTBMiniGame = true;
 			}

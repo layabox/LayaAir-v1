@@ -468,12 +468,14 @@ package laya.display {
 			mat.d = _formatData(mat.d);
 			mat.tx = _formatData(mat.tx);
 			mat.ty = _formatData(mat.ty);
-			canvasStyle.transformOrigin = canvasStyle.webkitTransformOrigin = canvasStyle.msTransformOrigin = canvasStyle.mozTransformOrigin = canvasStyle.oTransformOrigin = "0px 0px 0px";
-			canvasStyle.transform = canvasStyle.webkitTransform = canvasStyle.msTransform = canvasStyle.mozTransform = canvasStyle.oTransform = "matrix(" + mat.toString() + ")";
-			canvasStyle.width = canvasWidth;
-			canvasStyle.height = canvasHeight;
-			//修正用户自行设置的偏移
-			mat.translate(parseInt(canvasStyle.left) || 0, parseInt(canvasStyle.top) || 0);
+			if (!Browser.onTBMiniGame) {
+				canvasStyle.transformOrigin = canvasStyle.webkitTransformOrigin = canvasStyle.msTransformOrigin = canvasStyle.mozTransformOrigin = canvasStyle.oTransformOrigin = "0px 0px 0px";
+				canvasStyle.transform = canvasStyle.webkitTransform = canvasStyle.msTransform = canvasStyle.mozTransform = canvasStyle.oTransform = "matrix(" + mat.toString() + ")";
+				canvasStyle.width = canvasWidth;
+				canvasStyle.height = canvasHeight;
+				//修正用户自行设置的偏移
+				mat.translate(parseInt(canvasStyle.left) || 0, parseInt(canvasStyle.top) || 0);
+			}
 			visible = true;
 			_repaint = 1;
 			event(Event.RESIZE);

@@ -64,6 +64,9 @@ path:"../../../../plugins/hw/src"
 module:"laya.tbmini"
 path:"../../../../plugins/tb/src"
 
+module:"laya.tbminigame"
+path:"../../../../plugins/tbgame/src"
+
 module:"laya.tbplugin"
 path:"../../../../plugins/tbplugin/src"
 

@@ -8,6 +8,8 @@ package laya.ali.mini
 	import laya.utils.Handler;
 	import laya.utils.RunDriver;
 	import laya.utils.Utils;
+	import laya.renders.Render;
+	import laya.display.Stage;
 	
 	public class ALIMiniAdapter {
 		/**@private  包装对象**/
@@ -111,8 +113,93 @@ package laya.ali.mini
 			MiniLocalStorage.__init__();
 			onReciveData();
 			Config.useRetinalCanvas = true;
+			Laya.createRender=ALIMiniAdapter.aliPayCreateRender;
 		}
 		
+		public static function aliPayCreateRender():Render{
+			var screenWidth = Browser.clientWidth * Browser.pixelRatio;
+			var screenHeight = Browser.clientHeight * Browser.pixelRatio;
+			//计算是否旋转
+			var rotation:Boolean = false;
+			if (Laya.stage._screenMode !== Stage.SCREEN_NONE) {
+				var screenType:String = screenWidth / screenHeight < 1 ? Stage.SCREEN_VERTICAL : Stage.SCREEN_HORIZONTAL;
+				rotation = screenType !== Laya.stage._screenMode;
+				/*[IF-FLASH]*/
+				rotation = false;
+				if (rotation) {
+					//宽高互换
+					var temp:Number = screenHeight;
+					screenHeight = screenWidth;
+					screenWidth = temp;
+				}
+			}
+			Laya.stage.canvasRotation = rotation;
+			
+			var canvas:HTMLCanvas = Render._mainCanvas;
+			var canvasStyle:* = canvas.source.style;
+			var mat:Matrix = Laya.stage._canvasTransform.identity();
+			var scaleMode:String = Laya.stage._scaleMode;
+			var scaleX:Number = screenWidth / Laya.stage.designWidth
+			var scaleY:Number = screenHeight / Laya.stage.designHeight;
+			var canvasWidth:Number = Config.useRetinalCanvas?screenWidth:Laya.stage.designWidth;
+			var canvasHeight:Number = Config.useRetinalCanvas?screenHeight:Laya.stage.designHeight;
+			var realWidth:Number = screenWidth;
+			var realHeight:Number = screenHeight;
+			var pixelRatio:Number = Browser.pixelRatio;
+			Laya.stage._width = Laya.stage.designWidth;
+			Laya.stage._height = Laya.stage.designHeight;
+			
+			//处理缩放模式
+			switch (scaleMode) {
+			case Stage.SCALE_NOSCALE: 
+				scaleX = scaleY = 1;
+				realWidth = Laya.stage.designWidth;
+				realHeight = Laya.stage.designHeight;
+				break;
+			case Stage.SCALE_SHOWALL: 
+				scaleX = scaleY = Math.min(scaleX, scaleY);
+				canvasWidth = realWidth = Math.round(Laya.stage.designWidth * scaleX);
+				canvasHeight = realHeight = Math.round(Laya.stage.designHeight * scaleY);
+				break;
+			case Stage.SCALE_NOBORDER: 
+				scaleX = scaleY = Math.max(scaleX, scaleY);
+				realWidth = Math.round(Laya.stage.designWidth * scaleX);
+				realHeight = Math.round(Laya.stage.designHeight * scaleY);
+				break;
+			case Stage.SCALE_FULL: 
+				scaleX = scaleY = 1;
+				Laya.stage._width = canvasWidth = screenWidth;
+				Laya.stage._height = canvasHeight = screenHeight;
+				break;
+			case Stage.SCALE_FIXED_WIDTH: 
+				scaleY = scaleX;
+				Laya.stage._height = canvasHeight = Math.round(screenHeight / scaleX);
+				break;
+			case Stage.SCALE_FIXED_HEIGHT: 
+				scaleX = scaleY;
+				Laya.stage._width = canvasWidth = Math.round(screenWidth / scaleY);
+				break;
+			case Stage.SCALE_FIXED_AUTO: 
+				if ((screenWidth / screenHeight) < (Laya.stage.designWidth / Laya.stage.designHeight)) {
+					scaleY = scaleX;
+					Laya.stage._height = canvasHeight = Math.round(screenHeight / scaleX);
+				} else {
+					scaleX = scaleY;
+					Laya.stage._width = canvasWidth = Math.round(screenWidth / scaleY);
+				}
+				break;
+			}
+			if (Laya.stage.conchModel) Laya.stage.conchModel.size(Laya.stage._width, Laya.stage._height);
+			
+			if (Config.useRetinalCanvas){
+				realWidth = canvasWidth = screenWidth;
+				realHeight = canvasHeight = screenHeight;
+			}
+						
+			//处理canvas大小
+			return new Render(canvasWidth, canvasHeight);
+		}
+
 		private static function onReciveData():void
 		{
 			//接收主域透传的数据

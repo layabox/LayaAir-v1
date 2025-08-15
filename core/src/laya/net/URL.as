@@ -11,6 +11,8 @@ package laya.net {
 		private var _url:String;
 		/**@private */
 		private var _path:String;
+
+		public static _basePath:String;
 		
 		/**创建一个新的 <code>URL</code> 实例。*/
 		public function URL(url:String) {

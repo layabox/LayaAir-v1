@@ -137,8 +137,8 @@ package laya.tbplugin.mini
 					if(tempFilePath == "")
 					{
 						if (MiniFileMgr.isLocalNativeFile(sourceUrl)) {
-							var tempStr:string = URL.rootPath != "" ? URL.rootPath : URL._basePath;
-							var tempUrl:string = sourceUrl;
+							var tempStr:String = URL.rootPath != "" ? URL.rootPath : URL._basePath;
+							var tempUrl:String = sourceUrl;
 							if(tempStr != "" && (sourceUrl.indexOf("http://") != -1 || sourceUrl.indexOf("https://") != -1))
 								fileNativeUrl = sourceUrl.split(tempStr)[1];//去掉http头
 							if(!fileNativeUrl)

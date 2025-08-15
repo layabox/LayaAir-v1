@@ -44,9 +44,11 @@ package laya.renders {
 		
 		public function Render(width:Number, height:Number) {
 			var style:* = _mainCanvas.source.style;
-			style.position = 'absolute';
-			style.top = style.left = "0px";
-			style.background = "#000000";
+			if (!Browser.onTBMiniGame) {
+				style.position = 'absolute';
+				style.top = style.left = "0px";
+				style.background = "#000000";
+			}
 			
 			_mainCanvas.source.id = "layaCanvas";
 			var isWebGl:Boolean = Render.isWebGL;

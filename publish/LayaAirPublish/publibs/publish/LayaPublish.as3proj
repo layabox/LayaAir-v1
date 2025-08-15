@@ -41,6 +41,7 @@
     <class path="..\..\..\..\plugins\hw\src" />
     <class path="..\..\..\..\plugins\tb\src" />
     <class path="..\..\..\..\plugins\tbplugin\src" />
+    <class path="..\..\..\..\plugins\tbgame\src" />
   </classpaths>
   <!-- Build options -->
   <build>

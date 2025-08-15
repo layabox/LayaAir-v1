@@ -402,6 +402,10 @@ var ___Laya=(function(){
 		return Render.canvas;
 	}
 
+	Laya.createRender=function(){
+		return new Render(50,50);
+	}
+
 	Laya._getUrlPath=function(){
 		var location=Browser.window.location;
 		var pathName=location.pathname;
@@ -425,7 +429,7 @@ var ___Laya=(function(){
 	Laya.timer=null;
 	Laya.scaleTimer=null;
 	Laya.loader=null;
-	Laya.version="1.8.13beta";
+	Laya.version="1.8.17";
 	Laya.render=null;
 	Laya._currentStage=null;
 	Laya._isinit=false;
@@ -5445,9 +5449,11 @@ var Render=(function(){
 		/**@private */
 		this._timeId=0;
 		var style=Render._mainCanvas.source.style;
-		style.position='absolute';
-		style.top=style.left="0px";
-		style.background="#000000";
+		if (!Browser.onTBMiniGame){
+			style.position='absolute';
+			style.top=style.left="0px";
+			style.background="#000000";
+		}
 		Render._mainCanvas.source.id="layaCanvas";
 		var isWebGl=laya.renders.Render.isWebGL;
 		Render._mainCanvas.source.width=width;
@@ -7159,20 +7165,20 @@ var Browser=(function(){
 		Browser.onEdge=/*[SAFE]*/ Browser.u.indexOf('Edge')>-1;
 		Browser.onMiniGame=/*[SAFE]*/ Browser.u.indexOf('MiniGame')>-1;
 		Browser.onBDMiniGame=/*[SAFE]*/ Browser.u.indexOf('SwanGame')>-1;
-		Browser.onHWMiniGame=/*[SAFE]*/ laya.utils.Browser.window.hasOwnProperty("hbs");
+		Browser.onHWMiniGame=/*[SAFE]*/ laya.utils.Browser.window.hasOwnProperty && laya.utils.Browser.window.hasOwnProperty("hbs");
 		if(Browser.u.indexOf('OPPO')>-1 && Browser.u.indexOf('MiniGame')>-1){
 			Browser.onQGMiniGame=true;
 			Browser.onMiniGame=false;
 		}
-		if (laya.utils.Browser.window.hasOwnProperty("bl")&& Browser.u.indexOf('MiniGame')>-1){
+		if (laya.utils.Browser.window.hasOwnProperty && laya.utils.Browser.window.hasOwnProperty("bl")&& Browser.u.indexOf('MiniGame')>-1){
 			Browser.onBLMiniGame=true;
 			Browser.onMiniGame=false;
 		}
-		if (laya.utils.Browser.window.hasOwnProperty("qq")&& Browser.u.indexOf('MiniGame')>-1){
+		if (laya.utils.Browser.window.hasOwnProperty && laya.utils.Browser.window.hasOwnProperty("qq")&& Browser.u.indexOf('MiniGame')>-1){
 			Browser.onQQMiniGame=true;
 			Browser.onMiniGame=false;
 		}
-		if (laya.utils.Browser.window.hasOwnProperty("tt")&& Browser.u.indexOf('MiniGame')>-1){
+		if (laya.utils.Browser.window.hasOwnProperty && laya.utils.Browser.window.hasOwnProperty("tt")&& Browser.u.indexOf('MiniGame')>-1){
 			Browser.onTTMiniGame=true;
 			Browser.onMiniGame=false;
 		}
@@ -7186,7 +7192,7 @@ var Browser=(function(){
 			Browser.onAlipayMiniGame=true;
 			Browser.onMiniGame=false;
 		}
-		if ((Browser.u.indexOf('TB')>-1 || Browser.u.indexOf('Taobao')>-1 || Browser.u.indexOf('TM/')>-1)&& laya.utils.Browser.window.hasOwnProperty('my')){
+		if ((Browser.u.indexOf('TB')>-1 || Browser.u.indexOf('Taobao')>-1 || Browser.u.indexOf('TM/')>-1)){
 			Browser.onTBMiniGame=true;
 		}
 		if (Browser.onMiniGame && Browser.window.focus==null){
@@ -18670,11 +18676,13 @@ var Stage=(function(_super){
 		mat.d=this._formatData(mat.d);
 		mat.tx=this._formatData(mat.tx);
 		mat.ty=this._formatData(mat.ty);
-		canvasStyle.transformOrigin=canvasStyle.webkitTransformOrigin=canvasStyle.msTransformOrigin=canvasStyle.mozTransformOrigin=canvasStyle.oTransformOrigin="0px 0px 0px";
-		canvasStyle.transform=canvasStyle.webkitTransform=canvasStyle.msTransform=canvasStyle.mozTransform=canvasStyle.oTransform="matrix("+mat.toString()+")";
-		canvasStyle.width=canvasWidth;
-		canvasStyle.height=canvasHeight;
-		mat.translate(parseInt(canvasStyle.left)|| 0,parseInt(canvasStyle.top)|| 0);
+		if (!Browser.onTBMiniGame){
+			canvasStyle.transformOrigin=canvasStyle.webkitTransformOrigin=canvasStyle.msTransformOrigin=canvasStyle.mozTransformOrigin=canvasStyle.oTransformOrigin="0px 0px 0px";
+			canvasStyle.transform=canvasStyle.webkitTransform=canvasStyle.msTransform=canvasStyle.mozTransform=canvasStyle.oTransform="matrix("+mat.toString()+")";
+			canvasStyle.width=canvasWidth;
+			canvasStyle.height=canvasHeight;
+			mat.translate(parseInt(canvasStyle.left)|| 0,parseInt(canvasStyle.top)|| 0);
+		}
 		this.visible=true;
 		this._repaint=1;
 		this.event(/*laya.events.Event.RESIZE*/"resize");
@@ -21345,7 +21353,7 @@ var GraphicAnimation=(function(_super){
 })(FrameAnimation)
 
 
-	Laya.__init([EventDispatcher,LoaderManager,GraphicAnimation,Render,Browser,Timer,LocalStorage,TimeLine]);
+	Laya.__init([LoaderManager,EventDispatcher,GraphicAnimation,Render,Browser,Timer,LocalStorage,TimeLine]);
 })(window,document,Laya);
 
 (function(window,document,Laya){
